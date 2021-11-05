@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
 class LogoBlock extends StatelessWidget {
+  const LogoBlock({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: const [
-          Text(
-            'NotiKey',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
+    return Column(
+      children: const [
+        Text(
+          'NotiKey',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
           ),
-          Image(
-            image: AssetImage("assets/images/logoIcon.png"),
-            height: 90,
-          ),
-        ],
-      ),
+          textAlign: TextAlign.center,
+        ),
+        Image(
+          image: AssetImage("assets/images/logoIcon.png"),
+          height: 90,
+        ),
+      ],
     );
   }
 }

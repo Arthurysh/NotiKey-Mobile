@@ -5,6 +5,8 @@ import 'package:notikey/authorization.dart';
 import 'package:notikey/registration.dart';
 
 class MainAuthorization extends StatelessWidget {
+  const MainAuthorization({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +38,8 @@ class MainAuthorization extends StatelessWidget {
 }
 
 class AuthButtonBlock extends StatelessWidget {
+  const AuthButtonBlock({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
