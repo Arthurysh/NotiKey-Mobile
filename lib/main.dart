@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:notikey/MainAuthorization.dart';
+import 'package:notikey/main_authorization.dart';
 
-void main() => runApp(Notikey());
+void main() => runApp(NotiKey());
 
-class Notikey extends StatelessWidget {
+class NotiKey extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
