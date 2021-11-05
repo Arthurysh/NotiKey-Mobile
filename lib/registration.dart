@@ -9,6 +9,8 @@ class Registration extends StatelessWidget {
   final TextEditingController birthdayController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
 
+  getRegisterUserObj() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

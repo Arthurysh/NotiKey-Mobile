@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:notikey/Services/connect_controller.dart';
 import 'package:notikey/UI/logo_block.dart';
 import 'package:notikey/UI/my_dialog_box.dart';
+import 'package:notikey/main_menu.dart';
+import 'package:notikey/Entity/user.dart';
 
 class Authorization extends StatelessWidget {
   final TextEditingController loginController = new TextEditingController();
@@ -9,18 +12,35 @@ class Authorization extends StatelessWidget {
 
   final DialogBox dialogBox = new DialogBox();
 
-  getAuthUserObj(context) {
+  getAuthUserObj(context) async {
     if (this.loginController.text.trim() != '' &&
         this.passwordController.text.trim() != '' &&
         this.passwordController.text.length >= 8) {
       if (this.checkEmailField(this.loginController.text)) {
         Map userAuthObj = {
-          'login': this.loginController.text,
+          'email': this.loginController.text,
           'password': this.passwordController.text,
         };
         ConnectController connect = new ConnectController();
 
-        connect.startMethod('https://localhost:8000/api/Login', userAuthObj);
+        var response = await connect.startMethod(
+            'http://localhost:8000/api/Login', userAuthObj);
+        if (!response.keys.isEmpty) {
+          print(response["id"]);
+          User user = User(
+              response["id"],
+              response["user_role"],
+              response["name"],
+              response["surname"],
+              response["phone"],
+              response["email"],
+              response["birthday"]);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MainMenu(user)));
+        } else {
+          dialogBox.showCupertinoDialog(
+              context, "Ошибка Авторизации", "Такого пользователя нет");
+        }
       } else {
         dialogBox.showCupertinoDialog(
             context, "Ошибка Авторизации", "Не коректная почта");
