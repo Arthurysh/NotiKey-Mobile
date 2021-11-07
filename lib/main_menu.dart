@@ -66,112 +66,167 @@ class _MainMenu extends State<MainMenu> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: EdgeInsets.all(5),
-                                // ignore: deprecated_member_use
-                                child: ElevatedButton(
-                                  child: Text(
-                                    "Записи",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 30, right: 5, bottom: 5),
+                                  // ignore: deprecated_member_use
+                                  child: GestureDetector(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Записи",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      width: 140,
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.4),
+                                            spreadRadius: 2,
+                                            blurRadius: 6,
+                                          ),
+                                        ],
+                                      ),
                                     ),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Notes()));
+                                    },
                                   ),
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                    minimumSize: MaterialStateProperty.all(
-                                        Size(140, 120)),
-                                    foregroundColor:
-                                        MaterialStateProperty.all(Colors.black),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Notes()));
-                                  },
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(5),
-                                // ignore: deprecated_member_use
-                                child: ElevatedButton(
-                                  child: Text(
-                                    "Транспорт",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      right: 30, left: 5, bottom: 5),
+                                  // ignore: deprecated_member_use
+                                  child: GestureDetector(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Транспорт",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      width: 140,
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.4),
+                                            spreadRadius: 2,
+                                            blurRadius: 6,
+                                          ),
+                                        ],
+                                      ),
                                     ),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Vehicles()));
+                                    },
                                   ),
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                    minimumSize: MaterialStateProperty.all(
-                                        Size(140, 120)),
-                                    foregroundColor:
-                                        MaterialStateProperty.all(Colors.black),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Vehicles()));
-                                  },
                                 ),
-                              ),
+                              )
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: EdgeInsets.all(5),
-                                // ignore: deprecated_member_use
-                                child: ElevatedButton(
-                                  child: Text(
-                                    "Скидки",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 30, right: 5, top: 5),
+                                  // ignore: deprecated_member_use
+                                  child: GestureDetector(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Скидки",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      width: 140,
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.4),
+                                            spreadRadius: 2,
+                                            blurRadius: 6,
+                                          ),
+                                        ],
+                                      ),
                                     ),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Discounts()));
+                                    },
                                   ),
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                    minimumSize: MaterialStateProperty.all(
-                                        Size(140, 120)),
-                                    foregroundColor:
-                                        MaterialStateProperty.all(Colors.black),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Discounts()));
-                                  },
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(5),
-                                // ignore: deprecated_member_use
-                                child: ElevatedButton(
-                                  child: Text(
-                                    "Настройки",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      right: 30, left: 5, top: 5),
+                                  // ignore: deprecated_member_use
+                                  child: GestureDetector(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Нстройки",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      width: 140,
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.4),
+                                            spreadRadius: 2,
+                                            blurRadius: 6,
+                                          ),
+                                        ],
+                                      ),
                                     ),
+                                    onTap: () {
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) => Notes()));
+                                    },
                                   ),
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                    minimumSize: MaterialStateProperty.all(
-                                        Size(140, 120)),
-                                    foregroundColor:
-                                        MaterialStateProperty.all(Colors.black),
-                                  ),
-                                  onPressed: () {},
                                 ),
                               ),
                             ],
@@ -238,117 +293,5 @@ class UserBlock extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class DownMenu extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-        child: Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(40),
-          topLeft: Radius.circular(40),
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 20, bottom: 25),
-            height: 4,
-            width: 100,
-            decoration: BoxDecoration(
-              color: Colors.grey[600],
-              borderRadius: BorderRadius.all(Radius.circular(2)),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 5),
-            child: GridView.count(
-              crossAxisCount: 2,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(5),
-                  // ignore: deprecated_member_use
-                  child: RaisedButton(
-                    child: Text(
-                      "Пристрої",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14.0),
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                  // ignore: deprecated_member_use
-                  child: RaisedButton(
-                    child: Text(
-                      "Підписка",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14.0),
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                  // ignore: deprecated_member_use
-                  child: RaisedButton(
-                    child: Text(
-                      "Профіль",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14.0),
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                  // ignore: deprecated_member_use
-                  child: RaisedButton(
-                    child: Text(
-                      "Сценарії",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14.0),
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-              ],
-            ),
-          ),
-          BottomNavigate(true, false),
-        ],
-      ),
-    ));
   }
 }
