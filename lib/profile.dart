@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notikey/Services/connect_controller.dart';
 import 'package:notikey/UI/swipe_bottom_block.dart';
 import 'package:notikey/Entity/user.dart';
 
@@ -14,6 +15,15 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   late User user;
 
+  late Map updateUser = {
+    'name': user.name,
+    'surname': user.surname,
+    'email': user.email,
+    'phone': user.phone,
+    'birthday': user.birthday,
+    'password': '12345678',
+  };
+
   bool isActiveSaveBtn = false;
 
   _ProfileState(User user) {
@@ -27,17 +37,50 @@ class _ProfileState extends State<Profile> {
   TextEditingController phoneController = new TextEditingController();
   TextEditingController birthdayController = new TextEditingController();
 
-  fillUserFieldInfo() {
-    this.nameController.text = this.user.name;
-    this.surnameController.text = this.user.surname;
-    this.emailController.text = this.user.email;
-    this.phoneController.text = this.user.phone;
+  void fillUserFieldInfo() {
+    this.nameController.text = updateUser['name'];
+    this.surnameController.text = this.updateUser['surname'];
+    this.emailController.text = this.updateUser['email'];
+    this.phoneController.text = this.updateUser['phone'];
     this.birthdayController.text =
-        this.user.birthday.split('-').reversed.join('-');
+        this.updateUser['birthday'].split('-').reversed.join('-');
   }
 
-  checkChangeEventField() {
-    
+  void checkChangeEventField() {
+    int countChangedField = 0;
+    if (nameController.text != user.name) {
+      updateUser['name'] = nameController.text;
+      countChangedField++;
+    }
+    if (surnameController.text != user.surname) {
+      updateUser['surname'] = surnameController.text;
+      countChangedField++;
+    }
+    if (emailController.text != user.email) {
+      updateUser['email'] = emailController.text;
+      countChangedField++;
+    }
+    if (phoneController.text != user.phone) {
+      updateUser['phone'] = phoneController.text;
+      countChangedField++;
+    }
+    if (birthdayController.text !=
+        user.birthday.split('-').reversed.join('-')) {
+      updateUser['birthday'] =
+          birthdayController.text.split('-').reversed.join('-');
+      countChangedField++;
+    }
+    if (countChangedField > 0) {
+      changeSaveButtonStatus(true);
+    } else {
+      changeSaveButtonStatus(false);
+    }
+  }
+
+  void changeSaveButtonStatus(status) {
+    setState(() {
+      isActiveSaveBtn = status;
+    });
   }
 
   @override
@@ -164,6 +207,9 @@ class _ProfileState extends State<Profile> {
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.all(0),
                                     ),
+                                    onChanged: (String value) {
+                                      this.checkChangeEventField();
+                                    },
                                     controller: nameController,
                                   ),
                                 ),
@@ -184,6 +230,9 @@ class _ProfileState extends State<Profile> {
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.all(0),
                                     ),
+                                    onChanged: (String value) {
+                                      this.checkChangeEventField();
+                                    },
                                     controller: surnameController,
                                   ),
                                 ),
@@ -204,6 +253,9 @@ class _ProfileState extends State<Profile> {
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.all(0),
                                     ),
+                                    onChanged: (String value) {
+                                      this.checkChangeEventField();
+                                    },
                                     controller: emailController,
                                   ),
                                 ),
@@ -223,6 +275,9 @@ class _ProfileState extends State<Profile> {
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.all(0),
                                     ),
+                                    onChanged: (String value) {
+                                      this.checkChangeEventField();
+                                    },
                                     controller: phoneController,
                                   ),
                                 ),
@@ -247,7 +302,9 @@ class _ProfileState extends State<Profile> {
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.all(0),
                                     ),
-                                    onChanged: ,
+                                    onChanged: (String value) {
+                                      this.checkChangeEventField();
+                                    },
                                     controller: birthdayController,
                                   ),
                                 ),
@@ -276,7 +333,15 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    ConnectController connect =
+                                        new ConnectController();
+                                    print(updateUser);
+
+                                    var response = await connect.startMethod(
+                                        'http://localhost:8000/api/UpdateUser',
+                                        updateUser);
+                                  },
                                   child: const Text('Сохранить'),
                                 ),
                                 ElevatedButton(
