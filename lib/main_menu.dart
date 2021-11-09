@@ -1,6 +1,8 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:notikey/Services/connect_controller.dart';
+import 'package:notikey/UI/my_dialog_box.dart';
 import 'package:notikey/discounts.dart';
 import 'package:notikey/notes.dart';
 import 'package:notikey/UI/my_bottom_menu.dart';
@@ -25,6 +27,26 @@ class _MainMenu extends State<MainMenu> {
   _MainMenu(User user) {
     this.user = user;
   }
+  final DialogBox dialogBox = new DialogBox();
+  bool isOutFromAccount = false;
+
+  void updateUserData() async {
+    ConnectController connect = new ConnectController();
+
+    Map response = await connect.startGetMethod(
+        'http://localhost:8000/api/getUserMobile/', {'userId': user.userID});
+
+    if (response.keys.length != 0) {
+      user.name = response['name'];
+      user.surname = response['surname'];
+      user.phone = response['phone'];
+      user.email = response['email'];
+      user.birthday = response['birthday'];
+    } else {
+      dialogBox.showCupertinoDialog(
+          context, "Ошибка обновления", "Произошла ошибка");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +69,53 @@ class _MainMenu extends State<MainMenu> {
                     ),
                   ),
                 ),
-                UserBlock(user),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Profile(this.user)))
+                        .then((value) => {
+                              if (value == true)
+                                {Navigator.pop(context)}
+                              else
+                                {updateUserData()}
+                            });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 20, left: 20, top: 30),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Color.fromRGBO(69, 153, 245, 100), width: 3),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.blue[900],
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 20, bottom: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image(
+                            image:
+                                AssetImage("assets/images/userTestImage.png"),
+                            height: 80,
+                          ),
+                          Container(
+                            child: Text(
+                              "Здравствуйте, \n" + user.name,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                 FractionallySizedBox(
                   widthFactor: 0.89,
                   child: Container(
@@ -246,52 +314,53 @@ class _MainMenu extends State<MainMenu> {
   }
 }
 
-class UserBlock extends StatelessWidget {
-  late User user;
+// class UserBlock extends StatelessWidget {
+//   late User user;
 
-  UserBlock(User user) {
-    this.user = user;
-  }
+//   UserBlock(User user) {
+//     this.user = user;
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => Profile(this.user)));
-      },
-      child: Container(
-        margin: EdgeInsets.only(right: 20, left: 20, top: 30),
-        decoration: BoxDecoration(
-          border:
-              Border.all(color: Color.fromRGBO(69, 153, 245, 100), width: 3),
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.blue[900],
-        ),
-        child: Padding(
-          padding: EdgeInsets.only(top: 20, bottom: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Image(
-                image: AssetImage("assets/images/userTestImage.png"),
-                height: 80,
-              ),
-              Container(
-                child: Text(
-                  "Здравствуйте, \n" + user.name,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: () {
+//         Navigator.push(context,
+//                 MaterialPageRoute(builder: (context) => Profile(this.user)))
+//             .then((value) => {MainMenu.of(context).updateUserData()});
+//       },
+//       child: Container(
+//         margin: EdgeInsets.only(right: 20, left: 20, top: 30),
+//         decoration: BoxDecoration(
+//           border:
+//               Border.all(color: Color.fromRGBO(69, 153, 245, 100), width: 3),
+//           borderRadius: BorderRadius.circular(15),
+//           color: Colors.blue[900],
+//         ),
+//         child: Padding(
+//           padding: EdgeInsets.only(top: 20, bottom: 20),
+//           child: Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceAround,
+//             children: [
+//               Image(
+//                 image: AssetImage("assets/images/userTestImage.png"),
+//                 height: 80,
+//               ),
+//               Container(
+//                 child: Text(
+//                   "Здравствуйте, \n" + user.name,
+//                   style: TextStyle(
+//                     color: Colors.white,
+//                     fontSize: 17,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//                   textAlign: TextAlign.center,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

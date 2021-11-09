@@ -25,18 +25,24 @@ class Authorization extends StatelessWidget {
 
         var response = await connect.startMethod(
             'http://localhost:8000/api/Login', userAuthObj);
+        print(response.keys);
         if (!response.keys.isEmpty) {
-          print(response["id"]);
           User user = User(
-              response["id"],
+              response["userId"],
               response["user_role"],
               response["name"],
               response["surname"],
               response["phone"],
               response["email"],
               response["birthday"]);
+
+          loginController.text = '';
+          passwordController.text = '';
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MainMenu(user)));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MainMenu(user),
+                  fullscreenDialog: true));
         } else {
           dialogBox.showCupertinoDialog(
               context, "Ошибка Авторизации", "Такого пользователя нет");

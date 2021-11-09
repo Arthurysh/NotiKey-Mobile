@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notikey/Services/connect_controller.dart';
+import 'package:notikey/UI/my_dialog_box.dart';
 import 'package:notikey/UI/swipe_bottom_block.dart';
 import 'package:notikey/Entity/user.dart';
+import 'package:notikey/main_authorization.dart';
 
 class Profile extends StatefulWidget {
   late User user;
@@ -16,6 +19,7 @@ class _ProfileState extends State<Profile> {
   late User user;
 
   late Map updateUser = {
+    'userId': user.userID,
     'name': user.name,
     'surname': user.surname,
     'email': user.email,
@@ -25,6 +29,7 @@ class _ProfileState extends State<Profile> {
   };
 
   bool isActiveSaveBtn = false;
+  final DialogBox dialogBox = new DialogBox();
 
   _ProfileState(User user) {
     this.user = user;
@@ -81,6 +86,11 @@ class _ProfileState extends State<Profile> {
     setState(() {
       isActiveSaveBtn = status;
     });
+  }
+
+  void outFromAccount() {
+    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 
   @override
@@ -336,11 +346,19 @@ class _ProfileState extends State<Profile> {
                                   onPressed: () async {
                                     ConnectController connect =
                                         new ConnectController();
-                                    print(updateUser);
 
-                                    var response = await connect.startMethod(
-                                        'http://localhost:8000/api/UpdateUser',
+                                    Map response = await connect.startMethod(
+                                        'http://localhost:8000/api/updateUserMobile',
                                         updateUser);
+
+                                    if (response.keys.length == 0) {
+                                      changeSaveButtonStatus(false);
+                                    } else {
+                                      dialogBox.showCupertinoDialog(
+                                          context,
+                                          "Ошибка обновления",
+                                          "Произошла ошибка");
+                                    }
                                   },
                                   child: const Text('Сохранить'),
                                 ),
@@ -359,7 +377,32 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    showCupertinoDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return CupertinoAlertDialog(
+                                          title: Text("Выход из аккаунта"),
+                                          content: Text(
+                                              "Вы уверен что хотите выйти?"),
+                                          actions: [
+                                            CupertinoDialogAction(
+                                              child: Text("Да"),
+                                              onPressed: () {
+                                                outFromAccount();
+                                              },
+                                            ),
+                                            CupertinoDialogAction(
+                                              child: Text("Нет"),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            )
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
                                   child: const Text('Выйти'),
                                 ),
                               ],

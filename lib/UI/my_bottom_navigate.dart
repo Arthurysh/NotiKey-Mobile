@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notikey/Entity/user.dart';
+import 'package:notikey/main_menu.dart';
 import 'package:notikey/notifications.dart';
 
 class BottomNavigate extends StatefulWidget {
@@ -42,7 +44,7 @@ class _BottomNavigateState extends State<BottomNavigate> {
                 this.isActiveNotificationItem = false;
                 this.isActiveHomeItem = true;
               });
-              // print(Navigator.);
+
               Navigator.pop(context);
             },
             child: Container(
