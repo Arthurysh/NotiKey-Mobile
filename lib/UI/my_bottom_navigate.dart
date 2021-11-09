@@ -45,7 +45,7 @@ class _BottomNavigateState extends State<BottomNavigate> {
                 this.isActiveHomeItem = true;
               });
 
-              Navigator.pop(context);
+              Navigator.of(context).pop(true);
             },
             child: Container(
               child: Icon(

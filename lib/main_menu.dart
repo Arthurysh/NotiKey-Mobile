@@ -10,6 +10,7 @@ import 'package:notikey/Entity/user.dart';
 import 'package:notikey/UI/my_bottom_navigate.dart';
 import 'package:notikey/UI/swipe_bottom_block.dart';
 import 'package:notikey/profile.dart';
+import 'package:notikey/settings.dart';
 import 'package:notikey/vehicle.dart';
 
 class MainMenu extends StatefulWidget {
@@ -289,10 +290,11 @@ class _MainMenu extends State<MainMenu> {
                                       ),
                                     ),
                                     onTap: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) => Notes()));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Settings()));
                                     },
                                   ),
                                 ),
