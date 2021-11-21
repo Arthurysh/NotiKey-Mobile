@@ -25,6 +25,7 @@ class Authorization extends StatelessWidget {
 
         var response = await connect.startMethod(
             'http://localhost:8000/api/Login', userAuthObj);
+        print(response);
         print(response.keys);
         if (!response.keys.isEmpty) {
           User user = User(

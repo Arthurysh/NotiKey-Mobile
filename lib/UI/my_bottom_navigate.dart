@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notikey/Entity/user.dart';
+import 'package:notikey/detail_note.dart';
 import 'package:notikey/main_menu.dart';
 import 'package:notikey/notifications.dart';
 
@@ -55,16 +56,22 @@ class _BottomNavigateState extends State<BottomNavigate> {
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.blue[900],
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Icon(
-              Icons.add,
-              size: 40,
-              color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => DetailNote()));
+            },
+            child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.blue[900],
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Icon(
+                Icons.add,
+                size: 40,
+                color: Colors.white,
+              ),
             ),
           ),
           GestureDetector(
