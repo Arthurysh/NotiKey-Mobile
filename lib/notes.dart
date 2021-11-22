@@ -9,6 +9,7 @@ import 'package:notikey/Entity/note_status.dart';
 import 'package:notikey/Entity/service.dart';
 import 'package:notikey/Services/connect_controller.dart';
 import 'package:notikey/UI/swipe_bottom_block.dart';
+import 'package:notikey/detail_note.dart';
 
 class Notes extends StatefulWidget {
   late int userId;
@@ -53,17 +54,16 @@ class _NotesState extends State<Notes> {
                   ),
                   true,
                   false)
-              // BottomNavigate(false, true),
             ],
           )
         ],
       ),
-      // body: ListSidableWidget(userId),
     );
   }
 }
 
 class NoteBlock extends StatelessWidget {
+  late int noteId;
   late String name;
   late String status;
   late String services;
@@ -72,9 +72,10 @@ class NoteBlock extends StatelessWidget {
   late String date;
   late String time;
   late Color noteColor;
+  late Note noteObj;
 
-  NoteBlock(this.name, this.status, List<Service> services, this.car,
-      this.station, date, this.time, this.noteColor,
+  NoteBlock(this.noteId, this.name, this.status, List<Service> services,
+      this.car, this.station, date, this.time, this.noteColor, this.noteObj,
       {Key? key})
       : super(key: key) {
     this.services = convertNoteServicesToString(services);
@@ -159,8 +160,8 @@ class NoteBlock extends StatelessWidget {
         ),
       ),
       onTap: () {
-        // ignore: avoid_print
-        print('Note');
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DetailNote(noteObj)));
       },
     );
   }
@@ -222,6 +223,7 @@ class _DismissibleListState extends State<ListSidableWidget> {
                 }
                 return SlidableWidget(
                   child: NoteBlock(
+                      item.id,
                       item.name,
                       item.status,
                       item.services,
@@ -229,7 +231,8 @@ class _DismissibleListState extends State<ListSidableWidget> {
                       item.stationName,
                       item.date,
                       item.time,
-                      noteColor),
+                      noteColor,
+                      item),
                   onDismissed: (action) {
                     setState(
                       () {
