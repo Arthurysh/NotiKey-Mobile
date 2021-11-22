@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notikey/Entity/user.dart';
 import 'package:notikey/detail_note.dart';
+import 'package:notikey/add_note.dart';
 import 'package:notikey/main_menu.dart';
 import 'package:notikey/notifications.dart';
 
@@ -58,8 +59,8 @@ class _BottomNavigateState extends State<BottomNavigate> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DetailNote()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AddNote()));
             },
             child: Container(
               padding: EdgeInsets.all(5),
