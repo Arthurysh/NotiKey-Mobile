@@ -34,15 +34,15 @@ class _MainMenu extends State<MainMenu> {
   void updateUserData() async {
     ConnectController connect = new ConnectController();
 
-    Map response = await connect.startGetMethod(
+    List response = await connect.startGetMethod(
         'http://localhost:8000/api/getUserMobile/', {'userId': user.userID});
 
-    if (response.keys.length != 0) {
-      user.name = response['name'];
-      user.surname = response['surname'];
-      user.phone = response['phone'];
-      user.email = response['email'];
-      user.birthday = response['birthday'];
+    if (response[0].keys.length != 0) {
+      user.name = response[0]['name'];
+      user.surname = response[0]['surname'];
+      user.phone = response[0]['phone'];
+      user.email = response[0]['email'];
+      user.birthday = response[0]['birthday'];
     } else {
       dialogBox.showCupertinoDialog(
           context, "Ошибка обновления", "Произошла ошибка");
@@ -169,7 +169,8 @@ class _MainMenu extends State<MainMenu> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => Notes()));
+                                              builder: (context) =>
+                                                  Notes(user.userID)));
                                     },
                                   ),
                                 ),

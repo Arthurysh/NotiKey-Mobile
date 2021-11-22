@@ -28,18 +28,21 @@ class ConnectController {
     return await sendData(url, data);
   }
 
-  Future<Map> getData(String url, data) async {
-    Map userData = {};
+  Future<List> getData(String url, data) async {
+    late List userData;
 
-    String parametrs = '?';
+    String parametrs = '';
+    if (data.keys.length != 0) {
+      parametrs = '?';
 
-    data.forEach((key, value) {
-      if (data.keys.length == 1) {
-        parametrs += '$key=$value';
-      } else {
-        parametrs += '$key=$value&';
-      }
-    });
+      data.forEach((key, value) {
+        if (data.keys.length == 1) {
+          parametrs += '$key=$value';
+        } else {
+          parametrs += '$key=$value&';
+        }
+      });
+    }
 
     print(url + parametrs);
 
@@ -50,7 +53,7 @@ class ConnectController {
       print("Status: ${response.statusCode}");
 
       if (response.body != null) {
-        userData = json.decode(response.body)[0];
+        userData = json.decode(response.body);
       }
       return userData;
     } catch (error) {
@@ -59,7 +62,7 @@ class ConnectController {
     return userData;
   }
 
-  Future<Map> startGetMethod(String url, data) async {
+  Future<List> startGetMethod(String url, data) async {
     return await getData(url, data);
   }
 }

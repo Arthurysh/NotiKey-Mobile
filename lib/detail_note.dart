@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:notikey/UI/swipe_bottom_block.dart';
 import 'package:flutter/material.dart';
-import 'package:pay/pay.dart';
+// import 'package:pay/pay.dart';
 
 class DetailNote extends StatefulWidget {
   const DetailNote({Key? key}) : super(key: key);
@@ -13,13 +13,13 @@ class DetailNote extends StatefulWidget {
 class _DetailNoteState extends State<DetailNote> {
   List<String> noteDetails = ['A', 'B', 'C', 'D'];
   int resultPrice = 0;
-  final _paymentItems = [
-    PaymentItem(
-      label: 'Total',
-      amount: '99.99',
-      status: PaymentItemStatus.final_price,
-    )
-  ];
+  // final _paymentItems = [
+  //   PaymentItem(
+  //     label: 'Total',
+  //     amount: '99.99',
+  //     status: PaymentItemStatus.final_price,
+  //   )
+  // ];
   void onGooglePayResult(paymentResult) {
     debugPrint(paymentResult.toString());
   }
