@@ -1,18 +1,18 @@
+// ignore_for_file: use_key_in_widget_constructors, no_logic_in_create_state
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notikey/Services/connect_controller.dart';
 import 'package:notikey/UI/my_dialog_box.dart';
 import 'package:notikey/UI/swipe_bottom_block.dart';
 import 'package:notikey/Entity/user.dart';
-import 'package:notikey/main_authorization.dart';
 
+// ignore: must_be_immutable
 class Profile extends StatefulWidget {
   late User user;
-  Profile(User user) {
-    this.user = user;
-  }
+  Profile(this.user, {Key? key});
   @override
-  _ProfileState createState() => _ProfileState(this.user);
+  _ProfileState createState() => _ProfileState(user);
 }
 
 class _ProfileState extends State<Profile> {
@@ -29,26 +29,25 @@ class _ProfileState extends State<Profile> {
   };
 
   bool isActiveSaveBtn = false;
-  final DialogBox dialogBox = new DialogBox();
+  final DialogBox dialogBox = DialogBox();
 
-  _ProfileState(User user) {
-    this.user = user;
-    this.fillUserFieldInfo();
+  _ProfileState(this.user) {
+    fillUserFieldInfo();
   }
 
-  TextEditingController nameController = new TextEditingController();
-  TextEditingController surnameController = new TextEditingController();
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController phoneController = new TextEditingController();
-  TextEditingController birthdayController = new TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController surnameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController birthdayController = TextEditingController();
 
   void fillUserFieldInfo() {
-    this.nameController.text = updateUser['name'];
-    this.surnameController.text = this.updateUser['surname'];
-    this.emailController.text = this.updateUser['email'];
-    this.phoneController.text = this.updateUser['phone'];
-    this.birthdayController.text =
-        this.updateUser['birthday'].split('-').reversed.join('-');
+    nameController.text = updateUser['name'];
+    surnameController.text = updateUser['surname'];
+    emailController.text = updateUser['email'];
+    phoneController.text = updateUser['phone'];
+    birthdayController.text =
+        updateUser['birthday'].split('-').reversed.join('-');
   }
 
   void checkChangeEventField() {
@@ -96,326 +95,320 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(15, 18, 63, 100),
+      backgroundColor: const Color.fromRGBO(15, 18, 63, 100),
       body: Stack(
         children: [
-          Container(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 30, bottom: 20),
-                  child: Text(
-                    'Профиль',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
+          Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 30, bottom: 20),
+                child: Text(
+                  'Профиль',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                SwipeBottomBlock(
-                    Container(
-                      child: Column(
-                        children: [
-                          Container(
-                            margin:
-                                EdgeInsets.only(right: 20, left: 20, top: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.4),
-                                  spreadRadius: 2,
-                                  blurRadius: 6,
-                                ),
-                              ],
+              ),
+              SwipeBottomBlock(
+                  Column(
+                    children: [
+                      Container(
+                        margin:
+                            const EdgeInsets.only(right: 20, left: 20, top: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.4),
+                              spreadRadius: 2,
+                              blurRadius: 6,
                             ),
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 10, bottom: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: const Color.fromRGBO(0, 0, 0, 100),
+                                      width: 4),
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: const Image(
+                                  image: AssetImage(
+                                      "assets/images/userTestImage.png"),
+                                  height: 80,
+                                ),
+                              ),
+                              Column(
                                 children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Color.fromRGBO(0, 0, 0, 100),
-                                          width: 4),
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    child: Image(
-                                      image: AssetImage(
-                                          "assets/images/userTestImage.png"),
-                                      height: 80,
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Text(
+                                      user.name,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
-                                  Container(
-                                      child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(bottom: 10),
-                                        child: Text(
-                                          user.name,
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      Text(
-                                        user.surname,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ],
-                                  )),
+                                  Text(
+                                    user.surname,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ],
                               ),
-                            ),
+                            ],
                           ),
-                          Container(
-                            margin: EdgeInsets.only(
-                                right: 20, left: 20, top: 20, bottom: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.4),
-                                  spreadRadius: 2,
-                                  blurRadius: 6,
-                                ),
-                              ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(
+                            right: 20, left: 20, top: 20, bottom: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.4),
+                              spreadRadius: 2,
+                              blurRadius: 6,
                             ),
-                            child: Column(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(left: 15, right: 15),
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[400],
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(12),
-                                      topLeft: Radius.circular(12),
-                                    ),
-                                  ),
-                                  child: TextField(
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      contentPadding: EdgeInsets.all(0),
-                                    ),
-                                    onChanged: (String value) {
-                                      this.checkChangeEventField();
-                                    },
-                                    controller: nameController,
-                                  ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              padding:
+                                  const EdgeInsets.only(left: 15, right: 15),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[400],
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(12),
+                                  topLeft: Radius.circular(12),
                                 ),
-                                Container(
-                                  padding: EdgeInsets.only(left: 15, right: 15),
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                  ),
-                                  child: TextField(
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      contentPadding: EdgeInsets.all(0),
-                                    ),
-                                    onChanged: (String value) {
-                                      this.checkChangeEventField();
-                                    },
-                                    controller: surnameController,
-                                  ),
+                              ),
+                              child: TextField(
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                Container(
-                                  padding: EdgeInsets.only(left: 15, right: 15),
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[400],
-                                  ),
-                                  child: TextField(
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      contentPadding: EdgeInsets.all(0),
-                                    ),
-                                    onChanged: (String value) {
-                                      this.checkChangeEventField();
-                                    },
-                                    controller: emailController,
-                                  ),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(0),
                                 ),
-                                Container(
-                                  padding: EdgeInsets.only(left: 15, right: 15),
-                                  width: double.infinity,
-                                  decoration:
-                                      BoxDecoration(color: Colors.white),
-                                  child: TextField(
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      contentPadding: EdgeInsets.all(0),
-                                    ),
-                                    onChanged: (String value) {
-                                      this.checkChangeEventField();
-                                    },
-                                    controller: phoneController,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(left: 15, right: 15),
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[400],
-                                    borderRadius: BorderRadius.only(
-                                      bottomRight: Radius.circular(12),
-                                      bottomLeft: Radius.circular(12),
-                                    ),
-                                  ),
-                                  child: TextField(
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      contentPadding: EdgeInsets.all(0),
-                                    ),
-                                    onChanged: (String value) {
-                                      this.checkChangeEventField();
-                                    },
-                                    controller: birthdayController,
-                                  ),
-                                ),
-                              ],
+                                onChanged: (String value) {
+                                  checkChangeEventField();
+                                },
+                                controller: nameController,
+                              ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(right: 20, left: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        isActiveSaveBtn
-                                            ? Colors.blue[600]
-                                            : Colors.grey[600]),
-                                    foregroundColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                    minimumSize: MaterialStateProperty.all(
-                                        Size(140, 48)),
-                                    shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(10.0),
-                                      ),
-                                    ),
-                                  ),
-                                  onPressed: () async {
-                                    ConnectController connect =
-                                        new ConnectController();
-
-                                    Map response = await connect.startMethod(
-                                        'http://localhost:8000/api/updateUserMobile',
-                                        updateUser);
-
-                                    if (response.keys.length == 0) {
-                                      changeSaveButtonStatus(false);
-                                    } else {
-                                      dialogBox.showCupertinoDialog(
-                                          context,
-                                          "Ошибка обновления",
-                                          "Произошла ошибка");
-                                    }
-                                  },
-                                  child: const Text('Сохранить'),
+                            Container(
+                              padding:
+                                  const EdgeInsets.only(left: 15, right: 15),
+                              width: double.infinity,
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                              ),
+                              child: TextField(
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        Colors.red[400]),
-                                    foregroundColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                    minimumSize: MaterialStateProperty.all(
-                                        Size(140, 48)),
-                                    shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(10.0),
-                                      ),
-                                    ),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(0),
+                                ),
+                                onChanged: (String value) {
+                                  checkChangeEventField();
+                                },
+                                controller: surnameController,
+                              ),
+                            ),
+                            Container(
+                              padding:
+                                  const EdgeInsets.only(left: 15, right: 15),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[400],
+                              ),
+                              child: TextField(
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(0),
+                                ),
+                                onChanged: (String value) {
+                                  checkChangeEventField();
+                                },
+                                controller: emailController,
+                              ),
+                            ),
+                            Container(
+                              padding:
+                                  const EdgeInsets.only(left: 15, right: 15),
+                              width: double.infinity,
+                              decoration:
+                                  const BoxDecoration(color: Colors.white),
+                              child: TextField(
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(0),
+                                ),
+                                onChanged: (String value) {
+                                  checkChangeEventField();
+                                },
+                                controller: phoneController,
+                              ),
+                            ),
+                            Container(
+                              padding:
+                                  const EdgeInsets.only(left: 15, right: 15),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[400],
+                                borderRadius: const BorderRadius.only(
+                                  bottomRight: Radius.circular(12),
+                                  bottomLeft: Radius.circular(12),
+                                ),
+                              ),
+                              child: TextField(
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(0),
+                                ),
+                                onChanged: (String value) {
+                                  checkChangeEventField();
+                                },
+                                controller: birthdayController,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(right: 20, left: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    isActiveSaveBtn
+                                        ? Colors.blue[600]
+                                        : Colors.grey[600]),
+                                foregroundColor:
+                                    MaterialStateProperty.all(Colors.white),
+                                minimumSize: MaterialStateProperty.all(
+                                    const Size(140, 48)),
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  onPressed: () {
-                                    showCupertinoDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return CupertinoAlertDialog(
-                                          title: Text("Выход из аккаунта"),
-                                          content: Text(
-                                              "Вы уверен что хотите выйти?"),
-                                          actions: [
-                                            CupertinoDialogAction(
-                                              child: Text("Да"),
-                                              onPressed: () {
-                                                outFromAccount();
-                                              },
-                                            ),
-                                            CupertinoDialogAction(
-                                              child: Text("Нет"),
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                            )
-                                          ],
-                                        );
-                                      },
+                                ),
+                              ),
+                              onPressed: () async {
+                                ConnectController connect = ConnectController();
+
+                                Map response = await connect.startMethod(
+                                    'http://localhost:8000/api/updateUserMobile',
+                                    updateUser);
+
+                                if (response.keys.isEmpty) {
+                                  changeSaveButtonStatus(false);
+                                } else {
+                                  dialogBox.showCupertinoDialog(context,
+                                      "Ошибка обновления", "Произошла ошибка");
+                                }
+                              },
+                              child: const Text('Сохранить'),
+                            ),
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.red[400]),
+                                foregroundColor:
+                                    MaterialStateProperty.all(Colors.white),
+                                minimumSize: MaterialStateProperty.all(
+                                    const Size(140, 48)),
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {
+                                showCupertinoDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return CupertinoAlertDialog(
+                                      title: const Text("Выход из аккаунта"),
+                                      content: const Text(
+                                          "Вы уверен что хотите выйти?"),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                          child: const Text("Да"),
+                                          onPressed: () {
+                                            outFromAccount();
+                                          },
+                                        ),
+                                        CupertinoDialogAction(
+                                          child: const Text("Нет"),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        )
+                                      ],
                                     );
                                   },
-                                  child: const Text('Выйти'),
-                                ),
-                              ],
+                                );
+                              },
+                              child: const Text('Выйти'),
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                    true,
-                    false)
-                // BottomNavigate(false, true),
-              ],
-            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  true,
+                  false)
+              // BottomNavigate(false, true),
+            ],
           )
         ],
       ),

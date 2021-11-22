@@ -1,15 +1,18 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:notikey/UI/logo_block.dart';
 
 class Registration extends StatelessWidget {
-  final TextEditingController nameController = new TextEditingController();
-  final TextEditingController surnameController = new TextEditingController();
-  final TextEditingController phoneController = new TextEditingController();
-  final TextEditingController emailController = new TextEditingController();
-  final TextEditingController birthdayController = new TextEditingController();
-  final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController surnameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController birthdayController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   getRegisterUserObj() {
+    // ignore: unused_local_variable
     Map registerUserObj = {
       'name': '',
       'surname': '',
@@ -35,15 +38,15 @@ class Registration extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.only(left: 30, right: 30, top: 40),
+            margin: const EdgeInsets.only(left: 30, right: 30, top: 40),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                LogoBlock(),
+                const LogoBlock(),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 20, top: 20),
+                  padding: const EdgeInsets.only(bottom: 20, top: 20),
                   child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
@@ -56,9 +59,9 @@ class Registration extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
@@ -71,9 +74,9 @@ class Registration extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
@@ -86,9 +89,9 @@ class Registration extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
@@ -101,9 +104,9 @@ class Registration extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
@@ -116,9 +119,9 @@ class Registration extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
@@ -135,11 +138,11 @@ class Registration extends StatelessWidget {
                     backgroundColor:
                         MaterialStateProperty.all(Colors.blue[600]),
                     foregroundColor: MaterialStateProperty.all(Colors.white),
-                    minimumSize:
-                        MaterialStateProperty.all(Size(double.infinity, 48)),
+                    minimumSize: MaterialStateProperty.all(
+                        const Size(double.infinity, 48)),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
                     ),
                   ),

@@ -17,20 +17,21 @@ class SlidableWidget<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return Slidable(
       child: child,
-      actionPane: SlidableDrawerActionPane(),
+      actionPane: const SlidableDrawerActionPane(),
       actionExtentRatio: 0.40,
       secondaryActions: <Widget>[
         IconSlideAction(
           iconWidget: Container(
             width: 300,
             alignment: Alignment.center,
-            padding: EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
+            padding:
+                const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
             decoration: BoxDecoration(
               color: Colors.red[400],
               borderRadius: BorderRadius.circular(12),
             ),
-            margin: EdgeInsets.only(left: 5, bottom: 20),
-            child: Text(
+            margin: const EdgeInsets.only(left: 5, bottom: 20),
+            child: const Text(
               "Удалить",
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),

@@ -3,9 +3,5 @@ class Service {
   late String name;
   late String price;
 
-  Service(id, name, price) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
-  }
+  Service(this.id, this.name, this.price);
 }

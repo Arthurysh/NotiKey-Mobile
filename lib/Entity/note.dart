@@ -17,32 +17,18 @@ class Note {
   late List<Service> services;
 
   Note(
-    id,
-    name,
-    date,
-    time,
-    additionServices,
-    brand,
-    model,
-    statusHistory,
-    status,
-    stationName,
-    adress,
-    description,
-    services,
-  ) {
-    this.id = id;
-    this.name = name;
-    this.date = date;
-    this.time = time;
-    this.additionServices = additionServices;
-    this.brand = brand;
-    this.model = model;
-    this.statusHistory = statusHistory;
-    this.stationName = stationName;
-    this.status = status;
-    this.adress = adress;
-    this.description = description;
-    this.services = services;
-  }
+    this.id,
+    this.name,
+    this.date,
+    this.time,
+    this.additionServices,
+    this.brand,
+    this.model,
+    this.statusHistory,
+    this.status,
+    this.stationName,
+    this.adress,
+    this.description,
+    this.services,
+  );
 }

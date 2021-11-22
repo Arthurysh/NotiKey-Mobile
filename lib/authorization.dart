@@ -1,5 +1,6 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:notikey/Services/connect_controller.dart';
 import 'package:notikey/UI/logo_block.dart';
 import 'package:notikey/UI/my_dialog_box.dart';
@@ -7,27 +8,27 @@ import 'package:notikey/main_menu.dart';
 import 'package:notikey/Entity/user.dart';
 
 class Authorization extends StatelessWidget {
-  final TextEditingController loginController = new TextEditingController();
-  final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController loginController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-  final DialogBox dialogBox = new DialogBox();
+  final DialogBox dialogBox = DialogBox();
 
   getAuthUserObj(context) async {
-    if (this.loginController.text.trim() != '' &&
-        this.passwordController.text.trim() != '' &&
-        this.passwordController.text.length >= 8) {
-      if (this.checkEmailField(this.loginController.text)) {
+    if (loginController.text.trim() != '' &&
+        passwordController.text.trim() != '' &&
+        passwordController.text.length >= 8) {
+      if (checkEmailField(loginController.text)) {
         Map userAuthObj = {
-          'email': this.loginController.text,
-          'password': this.passwordController.text,
+          'email': loginController.text,
+          'password': passwordController.text,
         };
-        ConnectController connect = new ConnectController();
+        ConnectController connect = ConnectController();
 
         var response = await connect.startMethod(
             'http://localhost:8000/api/Login', userAuthObj);
-        print(response);
-        print(response.keys);
-        if (!response.keys.isEmpty) {
+        // print(response);
+        // print(response.keys);
+        if (response.keys.isNotEmpty) {
           User user = User(
               response["userId"],
               response["user_role"],
@@ -81,19 +82,19 @@ class Authorization extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.only(left: 30, right: 30, top: 50),
+            margin: const EdgeInsets.only(left: 30, right: 30, top: 50),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                LogoBlock(),
+                const LogoBlock(),
                 Container(
-                  margin: EdgeInsets.only(top: 100),
+                  margin: const EdgeInsets.only(top: 100),
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(bottom: 20),
+                        padding: const EdgeInsets.only(bottom: 20),
                         child: TextField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
@@ -107,9 +108,9 @@ class Authorization extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(bottom: 40),
+                        padding: const EdgeInsets.only(bottom: 40),
                         child: TextField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
@@ -132,10 +133,10 @@ class Authorization extends StatelessWidget {
                           foregroundColor:
                               MaterialStateProperty.all(Colors.white),
                           minimumSize: MaterialStateProperty.all(
-                              Size(double.infinity, 48)),
+                              const Size(double.infinity, 48)),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
                           ),
                         ),

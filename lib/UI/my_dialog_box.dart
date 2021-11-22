@@ -6,12 +6,12 @@ class DialogBox {
   void showCupertinoDialog(context, String titl, String cont) {
     showDialog(
       context: context,
-      builder: (_) => new CupertinoAlertDialog(
-        title: new Text(titl),
-        content: new Text(cont),
+      builder: (_) => CupertinoAlertDialog(
+        title: Text(titl),
+        content: Text(cont),
         actions: <Widget>[
           TextButton(
-            child: Text('Закрити'),
+            child: const Text('Закрити'),
             onPressed: () {
               Navigator.of(context).pop();
             },

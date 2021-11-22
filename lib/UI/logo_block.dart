@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LogoBlock extends StatelessWidget {
+  const LogoBlock({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(

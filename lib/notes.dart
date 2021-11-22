@@ -1,5 +1,4 @@
-// ignore: file_names
-// ignore_for_file: unnecessary_this, file_names
+// ignore_for_file: unnecessary_this, file_names, must_be_immutable
 
 import 'dart:async';
 
@@ -14,52 +13,48 @@ import 'package:notikey/UI/swipe_bottom_block.dart';
 class Notes extends StatefulWidget {
   late int userId;
 
-  Notes(userId) {
-    this.userId = userId;
-  }
+  // ignore: use_key_in_widget_constructors
+  Notes(this.userId, {Key? key});
 
   @override
+  // ignore: no_logic_in_create_state
   _NotesState createState() => _NotesState(userId);
 }
 
 class _NotesState extends State<Notes> {
   late int userId;
-  _NotesState(userId) {
-    this.userId = userId;
-  }
+  _NotesState(this.userId);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(15, 18, 63, 100),
+      backgroundColor: const Color.fromRGBO(15, 18, 63, 100),
       body: Stack(
         children: [
-          Container(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 30, bottom: 20),
-                  child: Text(
-                    'Записи',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
+          Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 30, bottom: 20),
+                child: Text(
+                  'Записи',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                SwipeBottomBlock(
-                    Container(
-                      margin: EdgeInsets.only(bottom: 10),
-                      height: 450,
-                      child: ListSidableWidget(userId),
-                    ),
-                    true,
-                    false)
-                // BottomNavigate(false, true),
-              ],
-            ),
+              ),
+              SwipeBottomBlock(
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    height: 450,
+                    child: ListSidableWidget(userId),
+                  ),
+                  true,
+                  false)
+              // BottomNavigate(false, true),
+            ],
           )
         ],
       ),
@@ -78,16 +73,12 @@ class NoteBlock extends StatelessWidget {
   late String time;
   late Color noteColor;
 
-  NoteBlock(name, status, List<Service> services, car, station, date, time,
-      noteColor) {
-    this.name = name;
-    this.status = status;
+  NoteBlock(this.name, this.status, List<Service> services, this.car,
+      this.station, date, this.time, this.noteColor,
+      {Key? key})
+      : super(key: key) {
     this.services = convertNoteServicesToString(services);
-    this.car = car;
-    this.station = station;
     this.date = date.toString().split('-').reversed.join('.');
-    this.time = time;
-    this.noteColor = noteColor;
   }
 
   @override
@@ -95,7 +86,7 @@ class NoteBlock extends StatelessWidget {
     return GestureDetector(
       child: Container(
         width: double.infinity,
-        margin: EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
           color: noteColor,
           borderRadius: BorderRadius.circular(10),
@@ -108,15 +99,16 @@ class NoteBlock extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 10),
+          padding:
+              const EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: 10),
                 child: Text(
                   this.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -152,9 +144,9 @@ class NoteBlock extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    "$time",
+                    time,
                     textAlign: TextAlign.end,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
@@ -167,6 +159,7 @@ class NoteBlock extends StatelessWidget {
         ),
       ),
       onTap: () {
+        // ignore: avoid_print
         print('Note');
       },
     );
@@ -175,7 +168,6 @@ class NoteBlock extends StatelessWidget {
   String convertNoteServicesToString(List<Service> services) {
     String servicesString = '';
 
-    print(services.length);
     int count = 0;
     for (var item in services) {
       count++;
@@ -193,22 +185,19 @@ class NoteBlock extends StatelessWidget {
 class ListSidableWidget extends StatefulWidget {
   late int userId;
 
-  ListSidableWidget(int userId) {
-    this.userId = userId;
-  }
+  // ignore: use_key_in_widget_constructors
+  ListSidableWidget(this.userId, {Key? key});
 
   @override
+  // ignore: no_logic_in_create_state
   _DismissibleListState createState() => _DismissibleListState(userId);
 }
 
 class _DismissibleListState extends State<ListSidableWidget> {
   late int userId;
   late List<Status> status = [];
-  // bool reload = false;
 
-  _DismissibleListState(int userId) {
-    this.userId = userId;
-  }
+  _DismissibleListState(this.userId);
 
   @override
   Widget build(BuildContext context) {
@@ -218,16 +207,14 @@ class _DismissibleListState extends State<ListSidableWidget> {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         // ignore: avoid_print
         if (snapshot.data == null) {
-          return Container(
-            child: Center(child: Text("Загрузка записей ...")),
-          );
+          return const Center(child: Text("Загрузка записей ..."));
         } else {
           if (snapshot.data.length != 0) {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
                 Note item = snapshot.data[index];
-                Color noteColor = Color.fromARGB(0, 0, 0, 0);
+                Color noteColor = const Color.fromARGB(0, 0, 0, 0);
                 for (var elem in this.status) {
                   if (item.status == elem.status) {
                     noteColor = hexToColor(elem.color);
@@ -253,30 +240,30 @@ class _DismissibleListState extends State<ListSidableWidget> {
                   },
                 );
               },
-              padding:
-                  (EdgeInsets.only(top: 30, left: 15, right: 15, bottom: 30)),
+              padding: (const EdgeInsets.only(
+                  top: 30, left: 15, right: 15, bottom: 30)),
             );
           } else {
             return Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 15, right: 15),
+                  padding: const EdgeInsets.only(left: 15, right: 15),
                   child: Container(
                     width: double.infinity,
                     height: 80,
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 2.0,
                         style: BorderStyle.solid,
-                        color: Color.fromRGBO(217, 218, 162, 1.0),
+                        color: const Color.fromRGBO(217, 218, 162, 1.0),
                       ),
-                      color: Color.fromRGBO(254, 255, 214, 1.0),
+                      color: const Color.fromRGBO(254, 255, 214, 1.0),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text(
                           "У вас пока что нет записей",
                           style: TextStyle(fontWeight: FontWeight.bold),
@@ -314,7 +301,7 @@ class _DismissibleListState extends State<ListSidableWidget> {
       }
 
       for (var status in note['statusHistory']) {
-        statusHistory.add(Status(null, status['status'], null));
+        statusHistory.add(Status(0, status['status'], ''));
       }
 
       notesArr.add(

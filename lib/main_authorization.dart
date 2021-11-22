@@ -25,9 +25,10 @@ class MainAuthorization extends StatelessWidget {
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
-                LogoBlock(),
-                AuthButtonBlock(),
+                const LogoBlock(),
+                const AuthButtonBlock(),
               ],
             ),
           ),
@@ -42,51 +43,49 @@ class AuthButtonBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(bottom: 20),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.white),
-                foregroundColor: MaterialStateProperty.all(Colors.black),
-                minimumSize: MaterialStateProperty.all(Size(250, 48)),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0),
-                  ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.white),
+              foregroundColor: MaterialStateProperty.all(Colors.black),
+              minimumSize: MaterialStateProperty.all(const Size(250, 48)),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Authorization()));
-              },
-              child: const Text('Вход'),
             ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Authorization()));
+            },
+            child: const Text('Вход'),
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 30),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.black),
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-                minimumSize: MaterialStateProperty.all(Size(250, 48)),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 30),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.black),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              minimumSize: MaterialStateProperty.all(const Size(250, 48)),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Registration()));
-              },
-              child: const Text('Регистрация'),
             ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Registration()));
+            },
+            child: const Text('Регистрация'),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
