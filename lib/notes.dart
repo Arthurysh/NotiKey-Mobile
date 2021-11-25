@@ -290,6 +290,8 @@ class _DismissibleListState extends State<ListSidableWidget> {
     List response = await connect.startGetMethod(
         'http://localhost:8000/api/notesInfo', {"userId": this.userId});
 
+    print(response);
+
     List<Note> notesArr = [];
     int noteCount = 0;
     for (var note in response) {
@@ -299,7 +301,8 @@ class _DismissibleListState extends State<ListSidableWidget> {
 
       for (var service in note['services']) {
         services.add(
-          Service(service['servicesId'], service['name'], service['price']),
+          Service(service['servicesId'], service['name'],
+              int.parse(service['price'])),
         );
       }
 

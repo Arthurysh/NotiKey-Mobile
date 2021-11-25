@@ -31,7 +31,7 @@ class ConnectController {
   }
 
   Future<List> getData(String url, data) async {
-    late List userData;
+    late List userData = [];
 
     String parametrs = '';
     if (data.keys.length != 0) {

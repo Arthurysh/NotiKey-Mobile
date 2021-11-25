@@ -1,7 +1,7 @@
 class Service {
   late int id;
   late String name;
-  late String price;
+  late int price;
 
   Service(this.id, this.name, this.price);
 }

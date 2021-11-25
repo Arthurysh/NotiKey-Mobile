@@ -21,9 +21,14 @@ class DetailNote extends StatefulWidget {
 
 class _DetailNoteState extends State<DetailNote> {
   List<String> noteDetails = ['A', 'B', 'C', 'D'];
-  int resultPrice = 0;
   late Note viewNoteObj;
-  _DetailNoteState(this.viewNoteObj, {Key? key});
+  bool isActivePayBtn = false;
+  int resultPrice = 0;
+
+  _DetailNoteState(this.viewNoteObj) {
+    isActivePayBtn = checkPayStatus();
+    calculateServiceTotalCost();
+  }
   // final _paymentItems = [
   //   PaymentItem(
   //     label: 'Total',
@@ -33,6 +38,19 @@ class _DetailNoteState extends State<DetailNote> {
   // ];
   void onGooglePayResult(paymentResult) {
     debugPrint(paymentResult.toString());
+  }
+
+  bool checkPayStatus() {
+    if (viewNoteObj.status == 'Готово к оплате') {
+      return true;
+    }
+    return false;
+  }
+
+  calculateServiceTotalCost() {
+    viewNoteObj.services.forEach((element) {
+      resultPrice += element.price;
+    });
   }
 
   @override
@@ -220,7 +238,7 @@ class _DetailNoteState extends State<DetailNote> {
                                 padding:
                                     const EdgeInsets.only(top: 8, bottom: 8),
                                 child: Text(
-                                  "Общая сумма: $resultPrice",
+                                  "Общая сумма: $resultPriceгрн",
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -245,20 +263,26 @@ class _DetailNoteState extends State<DetailNote> {
                           padding: const EdgeInsets.only(left: 28, right: 28),
                           child: ElevatedButton(
                             style: ButtonStyle(
-                              padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(15),
-                              ),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                                padding: MaterialStateProperty.all(
+                                  const EdgeInsets.all(15),
                                 ),
-                              ),
-                            ),
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                ),
+                                backgroundColor: isActivePayBtn
+                                    ? MaterialStateProperty.all(
+                                        Colors.blue[600])
+                                    : MaterialStateProperty.all(
+                                        Colors.grey[600])),
                             child: const Text("Оплатить",
                                 style: TextStyle(fontSize: 16)),
                             onPressed: () {
                               // ignore: avoid_print
-                              print("Clicked");
+                              if (isActivePayBtn) {
+                                print("Clicked");
+                              }
                             },
                           ),
                         )
