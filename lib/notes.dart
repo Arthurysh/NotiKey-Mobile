@@ -236,8 +236,7 @@ class _DismissibleListState extends State<ListSidableWidget> {
                   onDismissed: (action) {
                     setState(
                       () {
-                        snapshot.data.removeAt(index);
-                        deleteNote();
+                        deleteNote(snapshot.data[index].id);
                       },
                     );
                   },
@@ -290,12 +289,13 @@ class _DismissibleListState extends State<ListSidableWidget> {
     List response = await connect.startGetMethod(
         'http://localhost:8000/api/notesInfo', {"userId": this.userId});
 
-    print(response);
+    // print(response);
 
     List<Note> notesArr = [];
     int noteCount = 0;
     for (var note in response) {
       List<Service> services = [];
+      List<Service> additionalServices = [];
       List<Status> statusHistory = [];
       noteCount++;
 
@@ -304,6 +304,11 @@ class _DismissibleListState extends State<ListSidableWidget> {
           Service(service['servicesId'], service['name'],
               int.parse(service['price'])),
         );
+      }
+
+      for (var addService in note['additionalServices']) {
+        additionalServices.add(Service(addService['addServicesId'],
+            addService['name'], addService['price']));
       }
 
       for (var status in note['statusHistory']) {
@@ -316,7 +321,7 @@ class _DismissibleListState extends State<ListSidableWidget> {
             'Запись $noteCount',
             note['date'],
             note['time'],
-            note['additionServices'],
+            additionalServices,
             note['brand'],
             note['model'],
             statusHistory,
@@ -349,5 +354,13 @@ class _DismissibleListState extends State<ListSidableWidget> {
     return Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
   }
 
-  deleteNote() {}
+  deleteNote(noteId) async {
+    ConnectController connect = ConnectController();
+
+    Map noteIdObj = {
+      'idNotes': noteId,
+    };
+    await connect.startMethod(
+        'http://localhost:8000/api/deleteNotes', noteIdObj);
+  }
 }

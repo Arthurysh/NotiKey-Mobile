@@ -6,7 +6,7 @@ class Note {
   late String name;
   late String date;
   late String time;
-  late String additionServices;
+  late List<Service> additionServices;
   late String brand;
   late String model;
   late List<Status> statusHistory;

@@ -3,8 +3,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:notikey/Entity/note.dart';
 import 'package:notikey/Entity/service.dart';
+import 'package:notikey/UI/my_switch.dart';
 import 'package:notikey/UI/swipe_bottom_block.dart';
 import 'package:flutter/material.dart';
+import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 // import 'package:pay/pay.dart';
 
 // ignore: must_be_immutable
@@ -24,9 +26,13 @@ class _DetailNoteState extends State<DetailNote> {
   late Note viewNoteObj;
   bool isActivePayBtn = false;
   int resultPrice = 0;
+  final List<bool> _isOpen = [false, false];
+  List<Map> additionalLocalServices = [];
+  bool isReload = false;
 
   _DetailNoteState(this.viewNoteObj) {
     isActivePayBtn = checkPayStatus();
+    copyAdditionalService();
     calculateServiceTotalCost();
   }
   // final _paymentItems = [
@@ -48,9 +54,85 @@ class _DetailNoteState extends State<DetailNote> {
   }
 
   calculateServiceTotalCost() {
-    viewNoteObj.services.forEach((element) {
+    resultPrice = 0;
+    for (var element in viewNoteObj.services) {
       resultPrice += element.price;
+    }
+    additionalLocalServices.forEach((element) {
+      if (element['include']) {
+        int addServPrice = element['price'];
+        resultPrice += addServPrice;
+      }
     });
+  }
+
+  copyAdditionalService() {
+    for (var element in viewNoteObj.additionServices) {
+      Map additionalServiceObj = {
+        'id': element.id,
+        'name': element.name,
+        'price': element.price,
+        'include': false
+      };
+
+      additionalLocalServices.add(additionalServiceObj);
+    }
+  }
+
+  activateAdditionalService(elementId) {
+    additionalLocalServices.forEach((element) {
+      if (element['id'] == elementId) {
+        element['include'] = !element['include'];
+      }
+    });
+    calculateServiceTotalCost();
+    setState(() {
+      isReload = !isReload;
+    });
+  }
+
+  List<Widget> getServicesListWidget() {
+    List<Widget> servicesList = [];
+
+    for (var element in viewNoteObj.services) {
+      servicesList.add(Container(
+        alignment: Alignment.topLeft,
+        child: Padding(
+          padding: EdgeInsets.only(top: 6, bottom: 6),
+          child: Text(
+            '${element.name} - ${element.price}грн',
+            textAlign: TextAlign.left,
+            style: TextStyle(),
+          ),
+        ),
+      ));
+    }
+
+    return servicesList;
+  }
+
+  List<Widget> getAdditionalServicesListWidget() {
+    List<Widget> additionalServicesList = [];
+
+    for (var element in additionalLocalServices) {
+      additionalServicesList.add(Container(
+        alignment: Alignment.topLeft,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '${element['name']} - ${element['price']}грн',
+              textAlign: TextAlign.left,
+              style: TextStyle(),
+            ),
+            CupertinoSwitchWidget(
+                () => {activateAdditionalService(element['id'])}),
+          ],
+        ),
+      ));
+    }
+
+    return additionalServicesList;
   }
 
   @override
@@ -217,22 +299,65 @@ class _DetailNoteState extends State<DetailNote> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "Детали записи",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                              ConfigurableExpansionTile(
+                                animatedWidgetFollowingHeader: const Icon(
+                                  Icons.expand_more,
+                                  color: Color(0xFF707070),
                                 ),
+                                headerExpanded: Flexible(
+                                    child: Container(
+                                        alignment: Alignment.topLeft,
+                                        child: const Text("Детали записи",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            )))),
+                                header: Flexible(
+                                    child: Container(
+                                        alignment: Alignment.topLeft,
+                                        color: Colors.transparent,
+                                        child: const Text("Детали записи",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            )))),
+                                headerBackgroundColorStart: Colors.white,
+                                expandedBackgroundColor: Colors.white,
+                                headerBackgroundColorEnd: Colors.white,
+                                topBorderOn: false,
+                                bottomBorderOn: false,
+                                children: getServicesListWidget(),
                               ),
-                              Container(
-                                padding: const EdgeInsets.only(top: 8),
-                                child: const Text(
-                                  "Рекомендованные услуги",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              ConfigurableExpansionTile(
+                                animatedWidgetFollowingHeader: const Icon(
+                                  Icons.expand_more,
+                                  color: Color(0xFF707070),
                                 ),
+                                headerExpanded: Flexible(
+                                    child: Container(
+                                        alignment: Alignment.topLeft,
+                                        child:
+                                            const Text("Рекомендованные услуги",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                )))),
+                                header: Flexible(
+                                    child: Container(
+                                        alignment: Alignment.topLeft,
+                                        color: Colors.transparent,
+                                        child:
+                                            const Text("Рекомендованные услуги",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                )))),
+                                headerBackgroundColorStart: Colors.white,
+                                expandedBackgroundColor: Colors.white,
+                                headerBackgroundColorEnd: Colors.white,
+                                topBorderOn: false,
+                                bottomBorderOn: false,
+                                children: getAdditionalServicesListWidget(),
                               ),
                               Container(
                                 padding:
