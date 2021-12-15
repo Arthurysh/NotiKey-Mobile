@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:notikey/Entity/user.dart';
@@ -15,7 +15,7 @@ class Registration extends StatelessWidget {
   final TextEditingController birthdayController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  ConnectController connect = new ConnectController();
+  ConnectController connect = ConnectController();
   final DialogBox dialogBox = DialogBox();
 
   getRegisterUserObj(context) async {

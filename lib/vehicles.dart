@@ -1,8 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:notikey/Actions/slidable_widget.dart';
 import 'package:notikey/Entity/vehicle.dart';
 import 'package:notikey/Services/connect_controller.dart';
 import 'package:notikey/UI/swipe_bottom_block.dart';
+import 'package:notikey/detail_vehicle.dart';
 
 class Vehicles extends StatefulWidget {
   late int userId;
@@ -56,7 +59,7 @@ class _VehiclesState extends State<Vehicles> {
 class VehicleBlock extends StatelessWidget {
   late Vehicle vehicleObj;
 
-  VehicleBlock(this.vehicleObj, {Key? key}) : super(key: key) {}
+  VehicleBlock(this.vehicleObj, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +68,7 @@ class VehicleBlock extends StatelessWidget {
         width: double.infinity,
         margin: const EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
-          color: Color.fromRGBO(238, 239, 255, 1),
+          color: const Color.fromRGBO(238, 239, 255, 1),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -86,23 +89,21 @@ class VehicleBlock extends StatelessWidget {
                 children: [
                   Expanded(
                     // flex: 40,
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Image(
-                            image: AssetImage("assets/images/carPrototype.png"),
-                            width: 150,
-                          ),
-                        ],
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Image(
+                          image: AssetImage("assets/images/carPrototype.png"),
+                          width: 150,
+                        ),
+                      ],
                     ),
                   ),
                   Expanded(
                     // flex: 40,
                     child: Container(
-                      margin: EdgeInsets.only(left: 20),
+                      margin: const EdgeInsets.only(left: 20),
                       alignment: Alignment.center,
                       child: Row(
                         // mainAxisAlignment: MainAxisAlignment.center,
@@ -233,8 +234,8 @@ class VehicleBlock extends StatelessWidget {
         ),
       ),
       onTap: () {
-        // Navigator.push(context,
-        //     MaterialPageRoute(builder: (context) => DetailNote(noteObj)));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DetailVehicle(vehicleObj)));
       },
     );
   }
@@ -326,7 +327,7 @@ class _DismissibleListState extends State<ListSidableWidget> {
   Future<List<Vehicle>> getUserVehicles() async {
     ConnectController connect = ConnectController();
     List response = await connect.startGetMethod(
-        'http://localhost:8000/api/getUserCars', {"userId": this.userId});
+        'http://localhost:8000/api/getUserCars', {"userId": userId});
 
     // print(response);
 
@@ -339,7 +340,7 @@ class _DismissibleListState extends State<ListSidableWidget> {
           vehicle["image"],
           vehicle["type"],
           vehicle["year"],
-          vehicle["vehicleNumber"]));
+          vehicle["nomera"]));
     }
     return vehicleArr;
   }

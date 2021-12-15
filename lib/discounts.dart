@@ -1,4 +1,4 @@
-import 'dart:convert';
+// ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:notikey/Entity/discount.dart';
@@ -17,6 +17,7 @@ class Discounts extends StatefulWidget {
 
 class _DiscountsState extends State<Discounts> {
   late int userId;
+  // ignore: unused_element
   _DiscountsState(this.userId, {Key? key});
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _DiscountsState extends State<Discounts> {
 class DiscountBlock extends StatelessWidget {
   late Discount discountObj;
 
-  DiscountBlock(this.discountObj, {Key? key});
+  DiscountBlock(this.discountObj, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -102,7 +103,7 @@ class DiscountBlock extends StatelessWidget {
                 children: [
                   Text(
                     discountObj.percent.toString() + "%",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 30),
