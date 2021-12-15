@@ -1,7 +1,11 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:notikey/Entity/user.dart';
+import 'package:notikey/Services/connect_controller.dart';
 import 'package:notikey/UI/logo_block.dart';
+import 'package:notikey/UI/my_dialog_box.dart';
+import 'package:notikey/main_menu.dart';
 
 class Registration extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -11,14 +15,78 @@ class Registration extends StatelessWidget {
   final TextEditingController birthdayController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  getRegisterUserObj() {
-    // ignore: unused_local_variable
-    Map registerUserObj = {
-      'name': '',
-      'surname': '',
-      'phone': '',
-    };
-    if (nameController.text != '') {}
+  ConnectController connect = new ConnectController();
+  final DialogBox dialogBox = DialogBox();
+
+  getRegisterUserObj(context) async {
+    if (nameController.text.trim() != '' &&
+        surnameController.text.trim() != '' &&
+        phoneController.text.trim() != '' &&
+        birthdayController.text != '' &&
+        checkEmailField(emailController.text) &&
+        passwordController.text.trim() != '' &&
+        passwordController.text.length >= 8) {
+      Map registerUserObj = {
+        'name': nameController.text,
+        'surname': surnameController.text,
+        'phone': phoneController.text,
+        'birthday': birthdayController.text.split(".").reversed.join("-"),
+        'email': emailController.text,
+        'password': passwordController.text,
+        'password_confirmation': passwordController.text,
+        'user_role': 'User',
+      };
+
+      var response = await connect.startMethod(
+          "http://localhost:8000/api/Registration", registerUserObj);
+
+      if (response["errors"]["email"][0] !=
+          "The email has already been taken.") {
+        Map userAuthObj = {
+          'email': emailController.text,
+          'password': passwordController.text,
+        };
+
+        response = await connect.startMethod(
+            'http://localhost:8000/api/Login', userAuthObj);
+
+        if (response.keys.isNotEmpty) {
+          User user = User(
+            response["userId"],
+            response["user_role"],
+            response["name"],
+            response["surname"],
+            response["phone"],
+            response["email"],
+            response["birthday"],
+          );
+
+          nameController.text = '';
+          surnameController.text = '';
+          phoneController.text = '';
+          birthdayController.text = '';
+          emailController.text = '';
+          passwordController.text = '';
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MainMenu(user),
+                  fullscreenDialog: true));
+        }
+      } else {
+        dialogBox.showCupertinoDialog(
+            context, "Ошибка Регистрации", "Такой почта уже занята");
+      }
+    } else {
+      dialogBox.showCupertinoDialog(context, "Ошибка Регистрации",
+          "Проверьте коректность введенных данных");
+    }
+  }
+
+  bool checkEmailField(value) {
+    return RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(value);
   }
 
   @override
@@ -85,7 +153,7 @@ class Registration extends StatelessWidget {
                       fillColor: Colors.white,
                       contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                     ),
-                    controller: surnameController,
+                    controller: phoneController,
                   ),
                 ),
                 Padding(
@@ -146,7 +214,9 @@ class Registration extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    getRegisterUserObj(context);
+                  },
                   child: const Text('Регистрация'),
                 ),
               ],

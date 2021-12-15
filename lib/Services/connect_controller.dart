@@ -10,7 +10,10 @@ class ConnectController {
       var response = await http.post(
         url,
         body: jsonEncode(data),
-        headers: {"content-type": "application/json"},
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        },
       );
       print("Status: ${response.statusCode}");
       // print(response.body);

@@ -25,6 +25,7 @@ class _MainMenu extends State<MainMenu> {
   _MainMenu(this.user);
   final DialogBox dialogBox = DialogBox();
   bool isOutFromAccount = false;
+  bool isUpdate = false;
 
   void updateUserData() async {
     ConnectController connect = ConnectController();
@@ -38,6 +39,10 @@ class _MainMenu extends State<MainMenu> {
       user.phone = response[0]['phone'];
       user.email = response[0]['email'];
       user.birthday = response[0]['birthday'];
+
+      setState(() {
+        isUpdate = !isUpdate;
+      });
     } else {
       dialogBox.showCupertinoDialog(
           context, "Ошибка обновления", "Произошла ошибка");
