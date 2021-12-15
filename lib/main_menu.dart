@@ -251,7 +251,7 @@ class _MainMenu extends State<MainMenu> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Discounts()));
+                                              Discounts(user.userID)));
                                 },
                               ),
                             ),

@@ -98,11 +98,11 @@ class _DetailNoteState extends State<DetailNote> {
       servicesList.add(Container(
         alignment: Alignment.topLeft,
         child: Padding(
-          padding: EdgeInsets.only(top: 6, bottom: 6),
+          padding: const EdgeInsets.only(top: 6, bottom: 6),
           child: Text(
             '${element.name} - ${element.price}грн',
             textAlign: TextAlign.left,
-            style: TextStyle(),
+            style: const TextStyle(),
           ),
         ),
       ));
@@ -123,7 +123,7 @@ class _DetailNoteState extends State<DetailNote> {
             Text(
               '${element['name']} - ${element['price']}грн',
               textAlign: TextAlign.left,
-              style: TextStyle(),
+              style: const TextStyle(),
             ),
             CupertinoSwitchWidget(
                 () => {activateAdditionalService(element['id'])}),
