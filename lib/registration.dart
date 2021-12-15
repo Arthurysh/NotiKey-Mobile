@@ -40,8 +40,7 @@ class Registration extends StatelessWidget {
       var response = await connect.startMethod(
           "http://localhost:8000/api/Registration", registerUserObj);
 
-      if (response["errors"]["email"][0] !=
-          "The email has already been taken.") {
+      if (response["errors"] == null) {
         Map userAuthObj = {
           'email': emailController.text,
           'password': passwordController.text,
@@ -75,7 +74,7 @@ class Registration extends StatelessWidget {
         }
       } else {
         dialogBox.showCupertinoDialog(
-            context, "Ошибка Регистрации", "Такой почта уже занята");
+            context, "Ошибка Регистрации", "Такая почта уже занята");
       }
     } else {
       dialogBox.showCupertinoDialog(context, "Ошибка Регистрации",
