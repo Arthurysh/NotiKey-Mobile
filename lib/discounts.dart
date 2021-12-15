@@ -46,7 +46,9 @@ class _DiscountsState extends State<Discounts> {
                     child: ListSidableWidget(userId),
                   ),
                   true,
-                  false)
+                  false,
+                  'Vehicle',
+                  userId)
             ],
           )
         ],

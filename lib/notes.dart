@@ -53,7 +53,9 @@ class _NotesState extends State<Notes> {
                     child: ListSidableWidget(userId),
                   ),
                   true,
-                  false)
+                  false,
+                  'Notes',
+                  userId)
             ],
           )
         ],
@@ -73,9 +75,20 @@ class NoteBlock extends StatelessWidget {
   late String time;
   late Color noteColor;
   late Note noteObj;
+  late int userId;
 
-  NoteBlock(this.noteId, this.name, this.status, List<Service> services,
-      this.car, this.station, date, this.time, this.noteColor, this.noteObj,
+  NoteBlock(
+      this.noteId,
+      this.name,
+      this.status,
+      List<Service> services,
+      this.car,
+      this.station,
+      date,
+      this.time,
+      this.noteColor,
+      this.noteObj,
+      this.userId,
       {Key? key})
       : super(key: key) {
     this.services = convertNoteServicesToString(services);
@@ -160,8 +173,10 @@ class NoteBlock extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DetailNote(noteObj)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailNote(noteObj, userId)));
       },
     );
   }
@@ -232,7 +247,8 @@ class _DismissibleListState extends State<ListSidableWidget> {
                       item.date,
                       item.time,
                       noteColor,
-                      item),
+                      item,
+                      userId),
                   onDismissed: (action) {
                     setState(
                       () {

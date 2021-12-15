@@ -12,16 +12,18 @@ import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 // ignore: must_be_immutable
 class DetailNote extends StatefulWidget {
   late Note viewNoteObj;
+  late int userId;
 
   // ignore: use_key_in_widget_constructors
-  DetailNote(this.viewNoteObj, {Key? key});
+  DetailNote(this.viewNoteObj, this.userId, {Key? key});
 
   @override
   // ignore: no_logic_in_create_state
-  _DetailNoteState createState() => _DetailNoteState(viewNoteObj);
+  _DetailNoteState createState() => _DetailNoteState(viewNoteObj, userId);
 }
 
 class _DetailNoteState extends State<DetailNote> {
+  late int userId;
   List<String> noteDetails = ['A', 'B', 'C', 'D'];
   late Note viewNoteObj;
   bool isActivePayBtn = false;
@@ -30,7 +32,7 @@ class _DetailNoteState extends State<DetailNote> {
   List<Map> additionalLocalServices = [];
   bool isReload = false;
 
-  _DetailNoteState(this.viewNoteObj) {
+  _DetailNoteState(this.viewNoteObj, this.userId) {
     isActivePayBtn = checkPayStatus();
     copyAdditionalService();
     calculateServiceTotalCost();
@@ -415,7 +417,9 @@ class _DetailNoteState extends State<DetailNote> {
                     ),
                   ),
                   true,
-                  false)
+                  false,
+                  'DetailNote',
+                  userId)
               // BottomNavigate(false, true),
             ],
           )

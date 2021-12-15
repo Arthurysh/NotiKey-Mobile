@@ -1,29 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:notikey/add_note.dart';
+import 'package:notikey/add_vehicle.dart';
 import 'package:notikey/notifications.dart';
 
 // ignore: must_be_immutable
 class BottomNavigate extends StatefulWidget {
   late bool ishome;
   late bool isNotification;
+  late String screen = "MainMenu";
+  late int userId;
 
-  BottomNavigate(bool isHome, this.isNotification, {Key? key})
+  BottomNavigate(bool isHome, this.isNotification, this.screen, this.userId,
+      {Key? key})
       : super(key: key) {
     ishome = isHome;
   }
   @override
   _BottomNavigateState createState() =>
       // ignore: no_logic_in_create_state
-      _BottomNavigateState(ishome, isNotification);
+      _BottomNavigateState(ishome, isNotification, screen, userId);
 }
 
 class _BottomNavigateState extends State<BottomNavigate> {
   bool isActiveHomeItem = true;
   bool isActiveNotificationItem = false;
+  late String screen;
+  late int userId;
 
-  _BottomNavigateState(bool isHome, bool isNotification) {
-    isActiveHomeItem = isHome;
-    isActiveNotificationItem = isNotification;
+  _BottomNavigateState(this.isActiveHomeItem, this.isActiveNotificationItem,
+      this.screen, this.userId);
+
+  checkRouteAddScreen() {
+    switch (screen) {
+      case 'Notes':
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AddNote(userId)));
+        break;
+      case 'Vehicles':
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => AddVehicle(userId)));
+        break;
+    }
   }
 
   @override
@@ -41,12 +58,14 @@ class _BottomNavigateState extends State<BottomNavigate> {
         children: [
           GestureDetector(
             onTap: () {
-              setState(() {
-                isActiveNotificationItem = false;
-                isActiveHomeItem = true;
-              });
+              if (screen != 'MainMenu') {
+                setState(() {
+                  isActiveNotificationItem = false;
+                  isActiveHomeItem = true;
+                });
 
-              Navigator.of(context).pop(true);
+                Navigator.of(context).pop(true);
+              }
             },
             child: Icon(
               Icons.home,
@@ -56,8 +75,7 @@ class _BottomNavigateState extends State<BottomNavigate> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AddNote()));
+              this.checkRouteAddScreen();
             },
             child: Container(
               padding: const EdgeInsets.all(5),
@@ -83,7 +101,7 @@ class _BottomNavigateState extends State<BottomNavigate> {
                 Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Notifications()))
+                            builder: (context) => Notifications(userId)))
                     .then((value) {
                   setState(() {
                     isActiveHomeItem = true;

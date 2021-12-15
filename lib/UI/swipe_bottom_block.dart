@@ -6,9 +6,11 @@ class SwipeBottomBlock extends StatelessWidget {
   late Widget content;
   late bool isActiveHomeItem;
   late bool isActiveNotificationItem;
+  late String screen;
+  late int userId;
   // ignore: use_key_in_widget_constructors
-  SwipeBottomBlock(
-      this.content, this.isActiveHomeItem, this.isActiveNotificationItem,
+  SwipeBottomBlock(this.content, this.isActiveHomeItem,
+      this.isActiveNotificationItem, this.screen, this.userId,
       {Key? key});
 
   @override
@@ -36,7 +38,8 @@ class SwipeBottomBlock extends StatelessWidget {
             ),
           ),
           content,
-          BottomNavigate(isActiveHomeItem, isActiveNotificationItem),
+          BottomNavigate(
+              isActiveHomeItem, isActiveNotificationItem, screen, userId),
         ],
       ),
     ));

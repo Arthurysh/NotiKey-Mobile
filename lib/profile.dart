@@ -406,7 +406,9 @@ class _ProfileState extends State<Profile> {
                     ],
                   ),
                   true,
-                  false)
+                  false,
+                  'Profile',
+                  user.userID)
               // BottomNavigate(false, true),
             ],
           )

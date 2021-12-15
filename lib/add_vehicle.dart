@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:notikey/UI/swipe_bottom_block.dart';
 
-class Notifications extends StatefulWidget {
+class AddVehicle extends StatefulWidget {
   late int userId;
-  Notifications(this.userId, {Key? key}) : super(key: key);
+  AddVehicle(this.userId, {Key? key}) : super(key: key);
 
   @override
-  _NotificationsState createState() => _NotificationsState(userId);
+  _AddVehicleState createState() => _AddVehicleState(userId);
 }
 
-class _NotificationsState extends State<Notifications> {
+class _AddVehicleState extends State<AddVehicle> {
   late int userId;
-  _NotificationsState(this.userId);
+  _AddVehicleState(this.userId);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,7 @@ class _NotificationsState extends State<Notifications> {
               const Padding(
                 padding: EdgeInsets.only(top: 30, bottom: 20),
                 child: Text(
-                  'Уведомления',
+                  'Добавление транспорта',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -32,8 +32,8 @@ class _NotificationsState extends State<Notifications> {
                   ),
                 ),
               ),
-              SwipeBottomBlock(const Text('Notification'), false, true,
-                  'Notifications', userId)
+              SwipeBottomBlock(const Text('Добавление транспорта'), false, true,
+                  'AddVehicle', userId)
               // BottomNavigate(false, true),
             ],
           )

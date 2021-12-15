@@ -6,13 +6,16 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class AddNote extends StatefulWidget {
-  const AddNote({Key? key}) : super(key: key);
+  late int userId;
+  AddNote(this.userId, {Key? key}) : super(key: key);
 
   @override
-  _AddNoteState createState() => _AddNoteState();
+  _AddNoteState createState() => _AddNoteState(userId);
 }
 
 class _AddNoteState extends State<AddNote> {
+  late int userId;
+  _AddNoteState(this.userId);
   DateTime selectedDate = DateTime.now();
   // ignore: unused_field
   String? _selectedTime;
@@ -254,8 +257,9 @@ class _AddNoteState extends State<AddNote> {
                     ],
                   ),
                   true,
-                  false)
-              // BottomNavigate(false, true),
+                  false,
+                  'AddNote',
+                  userId)
             ],
           )
         ],

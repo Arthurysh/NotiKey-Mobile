@@ -291,7 +291,7 @@ class _MainMenu extends State<MainMenu> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Settings()));
+                                              Settings(user.userID)));
                                 },
                               ),
                             ),
@@ -301,7 +301,9 @@ class _MainMenu extends State<MainMenu> {
                     ],
                   ),
                   true,
-                  false),
+                  false,
+                  'MainMenu',
+                  user.userID),
             ],
           )
           // BottomMenu(),

@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:notikey/UI/swipe_bottom_block.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  late int userId;
+  Settings(this.userId, {Key? key}) : super(key: key);
 
   @override
-  _SettingsState createState() => _SettingsState();
+  _SettingsState createState() => _SettingsState(userId);
 }
 
 class _SettingsState extends State<Settings> {
+  late int userId;
+  _SettingsState(this.userId);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +59,9 @@ class _SettingsState extends State<Settings> {
                     ],
                   ),
                   true,
-                  false)
+                  false,
+                  'Settings',
+                  userId)
               // BottomNavigate(false, true),
             ],
           )

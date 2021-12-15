@@ -46,7 +46,9 @@ class _VehiclesState extends State<Vehicles> {
                     child: ListSidableWidget(userId),
                   ),
                   true,
-                  false)
+                  false,
+                  'Vehicles',
+                  userId)
               // BottomNavigate(false, true),
             ],
           )
@@ -58,8 +60,9 @@ class _VehiclesState extends State<Vehicles> {
 
 class VehicleBlock extends StatelessWidget {
   late Vehicle vehicleObj;
+  late int userId;
 
-  VehicleBlock(this.vehicleObj, {Key? key}) : super(key: key);
+  VehicleBlock(this.vehicleObj, this.userId, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -234,8 +237,10 @@ class VehicleBlock extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DetailVehicle(vehicleObj)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailVehicle(vehicleObj, userId)));
       },
     );
   }
@@ -273,7 +278,7 @@ class _DismissibleListState extends State<ListSidableWidget> {
               itemBuilder: (BuildContext context, int index) {
                 Vehicle item = snapshot.data[index];
                 return SlidableWidget(
-                  child: VehicleBlock(item),
+                  child: VehicleBlock(item, userId),
                   onDismissed: (action) {
                     setState(
                       () {

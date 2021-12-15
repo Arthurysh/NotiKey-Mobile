@@ -4,15 +4,17 @@ import 'package:notikey/UI/swipe_bottom_block.dart';
 
 class DetailVehicle extends StatefulWidget {
   late Vehicle vehicleObj;
-  DetailVehicle(this.vehicleObj, {Key? key}) : super(key: key);
+  late int userId;
+  DetailVehicle(this.vehicleObj, this.userId, {Key? key}) : super(key: key);
 
   @override
-  _DetailVehicleState createState() => _DetailVehicleState(vehicleObj);
+  _DetailVehicleState createState() => _DetailVehicleState(vehicleObj, userId);
 }
 
 class _DetailVehicleState extends State<DetailVehicle> {
   late Vehicle vehicleObj;
-  _DetailVehicleState(this.vehicleObj);
+  late int userId;
+  _DetailVehicleState(this.vehicleObj, this.userId);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -168,7 +170,9 @@ class _DetailVehicleState extends State<DetailVehicle> {
                     ),
                   ),
                   true,
-                  false)
+                  false,
+                  'DetailVehicle',
+                  userId)
             ],
           )
         ],
