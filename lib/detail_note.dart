@@ -158,268 +158,267 @@ class _DetailNoteState extends State<DetailNote> {
                 ),
               ),
               SwipeBottomBlock(
-                  SizedBox(
-                    height: 450,
-                    child: ListView(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(
-                              right: 20, left: 20, bottom: 15),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.4),
-                                spreadRadius: 2,
-                                blurRadius: 6,
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[400],
-                                  borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(12),
-                                    topLeft: Radius.circular(12),
-                                  ),
-                                ),
-                                child: Text(viewNoteObj.stationName,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                width: double.infinity,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                ),
-                                child: Text(viewNoteObj.adress,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[400],
-                                ),
-                                child: Text(
-                                    viewNoteObj.brand + " " + viewNoteObj.model,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                width: double.infinity,
-                                decoration:
-                                    const BoxDecoration(color: Colors.white),
-                                child: Text(
-                                    viewNoteObj.date
-                                        .toString()
-                                        .split('-')
-                                        .reversed
-                                        .join('.'),
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[400],
-                                ),
-                                child: Text(viewNoteObj.time,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                width: double.infinity,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                ),
-                                child: Text(viewNoteObj.status,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[400],
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(12),
-                                    bottomRight: Radius.circular(12),
-                                  ),
-                                ),
-                                child: Text(
-                                    convertNoteServicesToString(
-                                        viewNoteObj.services),
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ),
-                            ],
-                          ),
+                SizedBox(
+                  height: 450,
+                  child: ListView(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(
+                            right: 20, left: 20, bottom: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.4),
+                              spreadRadius: 2,
+                              blurRadius: 6,
+                            ),
+                          ],
                         ),
-                        Container(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 20, bottom: 10),
-                          width: double.infinity,
-                          // color: Colors.green,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ConfigurableExpansionTile(
-                                animatedWidgetFollowingHeader: const Icon(
-                                  Icons.expand_more,
-                                  color: Color(0xFF707070),
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[400],
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(12),
+                                  topLeft: Radius.circular(12),
                                 ),
-                                headerExpanded: Flexible(
-                                    child: Container(
-                                        alignment: Alignment.topLeft,
-                                        child: const Text("Детали записи",
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            )))),
-                                header: Flexible(
-                                    child: Container(
-                                        alignment: Alignment.topLeft,
-                                        color: Colors.transparent,
-                                        child: const Text("Детали записи",
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            )))),
-                                headerBackgroundColorStart: Colors.white,
-                                expandedBackgroundColor: Colors.white,
-                                headerBackgroundColorEnd: Colors.white,
-                                topBorderOn: false,
-                                bottomBorderOn: false,
-                                children: getServicesListWidget(),
                               ),
-                              ConfigurableExpansionTile(
-                                animatedWidgetFollowingHeader: const Icon(
-                                  Icons.expand_more,
-                                  color: Color(0xFF707070),
-                                ),
-                                headerExpanded: Flexible(
-                                    child: Container(
-                                        alignment: Alignment.topLeft,
-                                        child:
-                                            const Text("Рекомендованные услуги",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                )))),
-                                header: Flexible(
-                                    child: Container(
-                                        alignment: Alignment.topLeft,
-                                        color: Colors.transparent,
-                                        child:
-                                            const Text("Рекомендованные услуги",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                )))),
-                                headerBackgroundColorStart: Colors.white,
-                                expandedBackgroundColor: Colors.white,
-                                headerBackgroundColorEnd: Colors.white,
-                                topBorderOn: false,
-                                bottomBorderOn: false,
-                                children: getAdditionalServicesListWidget(),
-                              ),
-                              Container(
-                                padding:
-                                    const EdgeInsets.only(top: 8, bottom: 8),
-                                child: Text(
-                                  "Общая сумма: $resultPriceгрн",
+                              child: Text(viewNoteObj.stationName,
+                                  textAlign: TextAlign.center,
                                   style: const TextStyle(
+                                    color: Colors.black,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                  ),
+                                  )),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              width: double.infinity,
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                              ),
+                              child: Text(viewNoteObj.adress,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[400],
+                              ),
+                              child: Text(
+                                  viewNoteObj.brand + " " + viewNoteObj.model,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              width: double.infinity,
+                              decoration:
+                                  const BoxDecoration(color: Colors.white),
+                              child: Text(
+                                  viewNoteObj.date
+                                      .toString()
+                                      .split('-')
+                                      .reversed
+                                      .join('.'),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[400],
+                              ),
+                              child: Text(viewNoteObj.time,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              width: double.infinity,
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                              ),
+                              child: Text(viewNoteObj.status,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[400],
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
                                 ),
                               ),
-                            ],
-                          ),
+                              child: Text(
+                                  convertNoteServicesToString(
+                                      viewNoteObj.services),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                          ],
                         ),
-                        // GooglePayButton(
-                        //   paymentConfigurationAsset: 'gpay.json',
-                        //   paymentItems: _paymentItems,
-                        //   style: GooglePayButtonStyle.black,
-                        //   type: GooglePayButtonType.pay,
-                        //   margin: const EdgeInsets.only(top: 15.0),
-                        //   onPaymentResult: onGooglePayResult,
-                        //   loadingIndicator: const Center(
-                        //     child: CircularProgressIndicator(),
-                        //   ),
-                        // )
-                        Padding(
-                          padding: const EdgeInsets.only(left: 28, right: 28),
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                                padding: MaterialStateProperty.all(
-                                  const EdgeInsets.all(15),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, bottom: 10),
+                        width: double.infinity,
+                        // color: Colors.green,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ConfigurableExpansionTile(
+                              animatedWidgetFollowingHeader: const Icon(
+                                Icons.expand_more,
+                                color: Color(0xFF707070),
+                              ),
+                              headerExpanded: Flexible(
+                                  child: Container(
+                                      alignment: Alignment.topLeft,
+                                      child: const Text("Детали записи",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          )))),
+                              header: Flexible(
+                                  child: Container(
+                                      alignment: Alignment.topLeft,
+                                      color: Colors.transparent,
+                                      child: const Text("Детали записи",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          )))),
+                              headerBackgroundColorStart: Colors.white,
+                              expandedBackgroundColor: Colors.white,
+                              headerBackgroundColorEnd: Colors.white,
+                              topBorderOn: false,
+                              bottomBorderOn: false,
+                              children: getServicesListWidget(),
+                            ),
+                            ConfigurableExpansionTile(
+                              animatedWidgetFollowingHeader: const Icon(
+                                Icons.expand_more,
+                                color: Color(0xFF707070),
+                              ),
+                              headerExpanded: Flexible(
+                                  child: Container(
+                                      alignment: Alignment.topLeft,
+                                      child:
+                                          const Text("Рекомендованные услуги",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              )))),
+                              header: Flexible(
+                                  child: Container(
+                                      alignment: Alignment.topLeft,
+                                      color: Colors.transparent,
+                                      child:
+                                          const Text("Рекомендованные услуги",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              )))),
+                              headerBackgroundColorStart: Colors.white,
+                              expandedBackgroundColor: Colors.white,
+                              headerBackgroundColorEnd: Colors.white,
+                              topBorderOn: false,
+                              bottomBorderOn: false,
+                              children: getAdditionalServicesListWidget(),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(top: 8, bottom: 8),
+                              child: Text(
+                                "Общая сумма: $resultPriceгрн",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // GooglePayButton(
+                      //   paymentConfigurationAsset: 'gpay.json',
+                      //   paymentItems: _paymentItems,
+                      //   style: GooglePayButtonStyle.black,
+                      //   type: GooglePayButtonType.pay,
+                      //   margin: const EdgeInsets.only(top: 15.0),
+                      //   onPaymentResult: onGooglePayResult,
+                      //   loadingIndicator: const Center(
+                      //     child: CircularProgressIndicator(),
+                      //   ),
+                      // )
+                      Padding(
+                        padding: const EdgeInsets.only(left: 28, right: 28),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                              padding: MaterialStateProperty.all(
+                                const EdgeInsets.all(15),
+                              ),
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                backgroundColor: isActivePayBtn
-                                    ? MaterialStateProperty.all(
-                                        Colors.blue[600])
-                                    : MaterialStateProperty.all(
-                                        Colors.grey[600])),
-                            child: const Text("Оплатить",
-                                style: TextStyle(fontSize: 16)),
-                            onPressed: () {
-                              // ignore: avoid_print
-                              if (isActivePayBtn) {
-                                print("Clicked");
-                              }
-                            },
-                          ),
-                        )
-                      ],
-                    ),
+                              ),
+                              backgroundColor: isActivePayBtn
+                                  ? MaterialStateProperty.all(Colors.blue[600])
+                                  : MaterialStateProperty.all(
+                                      Colors.grey[600])),
+                          child: const Text("Оплатить",
+                              style: TextStyle(fontSize: 16)),
+                          onPressed: () {
+                            // ignore: avoid_print
+                            if (isActivePayBtn) {
+                              print("Clicked");
+                            }
+                          },
+                        ),
+                      )
+                    ],
                   ),
-                  true,
-                  false,
-                  'DetailNote',
-                  userId)
+                ),
+                true,
+                false,
+                'DetailNote',
+                userId,
+              )
               // BottomNavigate(false, true),
             ],
           )

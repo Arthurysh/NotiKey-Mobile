@@ -10,8 +10,7 @@ class SwipeBottomBlock extends StatelessWidget {
   late int userId;
   // ignore: use_key_in_widget_constructors
   SwipeBottomBlock(this.content, this.isActiveHomeItem,
-      this.isActiveNotificationItem, this.screen, this.userId,
-      {Key? key});
+      this.isActiveNotificationItem, this.screen, this.userId);
 
   @override
   Widget build(BuildContext context) {

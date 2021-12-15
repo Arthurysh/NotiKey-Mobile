@@ -47,15 +47,16 @@ class _NotesState extends State<Notes> {
                 ),
               ),
               SwipeBottomBlock(
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 10),
-                    height: 450,
-                    child: ListSidableWidget(userId),
-                  ),
-                  true,
-                  false,
-                  'Notes',
-                  userId)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  height: 450,
+                  child: ListSidableWidget(userId),
+                ),
+                true,
+                false,
+                'Notes',
+                userId,
+              )
             ],
           )
         ],

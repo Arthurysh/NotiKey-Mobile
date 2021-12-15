@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:notikey/Entity/vehicle.dart';
 import 'package:notikey/add_note.dart';
 import 'package:notikey/add_vehicle.dart';
 import 'package:notikey/notifications.dart';
+import 'package:notikey/vehicles.dart';
 
 // ignore: must_be_immutable
 class BottomNavigate extends StatefulWidget {
@@ -15,6 +17,7 @@ class BottomNavigate extends StatefulWidget {
       : super(key: key) {
     ishome = isHome;
   }
+
   @override
   _BottomNavigateState createState() =>
       // ignore: no_logic_in_create_state
@@ -38,7 +41,11 @@ class _BottomNavigateState extends State<BottomNavigate> {
         break;
       case 'Vehicles':
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => AddVehicle(userId)));
+                MaterialPageRoute(builder: (context) => AddVehicle(userId)))
+            .then((value) => {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Vehicles(userId)))
+                });
         break;
     }
   }

@@ -64,202 +64,200 @@ class _AddNoteState extends State<AddNote> {
                 ),
               ),
               SwipeBottomBlock(
-                  Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              width: 2.0,
-                              style: BorderStyle.solid,
-                              color: Colors.black,
-                            )),
-                        padding: const EdgeInsets.only(top: 10, left: 25),
-                        height: 50,
-                        width: 300,
-                        child: DropdownButton<String>(
-                          isDense: true,
-                          underline: Container(
-                            height: 0,
-                          ),
-                          hint: const Text("Станция СТО"),
-                          style: const TextStyle(fontSize: 20),
-                          isExpanded: true,
-                          dropdownColor: Colors.green,
-                          items:
-                              <String>['A', 'B', 'C', 'D'].map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (_) {},
+                Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            width: 2.0,
+                            style: BorderStyle.solid,
+                            color: Colors.black,
+                          )),
+                      padding: const EdgeInsets.only(top: 10, left: 25),
+                      height: 50,
+                      width: 300,
+                      child: DropdownButton<String>(
+                        isDense: true,
+                        underline: Container(
+                          height: 0,
                         ),
+                        hint: const Text("Станция СТО"),
+                        style: const TextStyle(fontSize: 20),
+                        isExpanded: true,
+                        dropdownColor: Colors.green,
+                        items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                          return new DropdownMenuItem<String>(
+                            value: value,
+                            child: new Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (_) {},
                       ),
-                      const SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              width: 2.0,
-                              style: BorderStyle.solid,
-                              color: Colors.black,
-                            )),
-                        padding: const EdgeInsets.only(top: 10, left: 25),
-                        height: 50,
-                        width: 300,
-                        child: DropdownButton<String>(
-                          isDense: true,
-                          underline: Container(
-                            height: 0,
-                          ),
-                          hint: const Text("Машина"),
-                          style: const TextStyle(fontSize: 20),
-                          isExpanded: true,
-                          dropdownColor: Colors.green,
-                          items:
-                              <String>['A', 'B', 'C', 'D'].map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (_) {},
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            width: 2.0,
+                            style: BorderStyle.solid,
+                            color: Colors.black,
+                          )),
+                      padding: const EdgeInsets.only(top: 10, left: 25),
+                      height: 50,
+                      width: 300,
+                      child: DropdownButton<String>(
+                        isDense: true,
+                        underline: Container(
+                          height: 0,
                         ),
+                        hint: const Text("Машина"),
+                        style: const TextStyle(fontSize: 20),
+                        isExpanded: true,
+                        dropdownColor: Colors.green,
+                        items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                          return new DropdownMenuItem<String>(
+                            value: value,
+                            child: new Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (_) {},
                       ),
-                      const SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              width: 2.0,
-                              style: BorderStyle.solid,
-                              color: Colors.black,
-                            )),
-                        padding: const EdgeInsets.only(top: 10, left: 25),
-                        height: 50,
-                        width: 300,
-                        child: DropdownButton<String>(
-                          isDense: true,
-                          underline: Container(
-                            height: 0,
-                          ),
-                          hint: const Text("Дата"),
-                          style: const TextStyle(fontSize: 20),
-                          isExpanded: true,
-                          dropdownColor: Colors.green,
-                          items: <String>['A'].map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (_) {},
-                          onTap: () => _selectDate(context),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            width: 2.0,
+                            style: BorderStyle.solid,
+                            color: Colors.black,
+                          )),
+                      padding: const EdgeInsets.only(top: 10, left: 25),
+                      height: 50,
+                      width: 300,
+                      child: DropdownButton<String>(
+                        isDense: true,
+                        underline: Container(
+                          height: 0,
                         ),
+                        hint: const Text("Дата"),
+                        style: const TextStyle(fontSize: 20),
+                        isExpanded: true,
+                        dropdownColor: Colors.green,
+                        items: <String>['A'].map((String value) {
+                          return new DropdownMenuItem<String>(
+                            value: value,
+                            child: new Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (_) {},
+                        onTap: () => _selectDate(context),
                       ),
-                      const SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              width: 2.0,
-                              style: BorderStyle.solid,
-                              color: Colors.black,
-                            )),
-                        padding: const EdgeInsets.only(top: 10, left: 25),
-                        height: 50,
-                        width: 300,
-                        child: DropdownButton<String>(
-                          isDense: true,
-                          underline: Container(
-                            height: 0,
-                          ),
-                          hint: const Text("Время"),
-                          style: const TextStyle(fontSize: 20),
-                          isExpanded: true,
-                          dropdownColor: Colors.green,
-                          items:
-                              <String>['A', 'B', 'C', 'D'].map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (_) {},
-                          onTap: _show,
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            width: 2.0,
+                            style: BorderStyle.solid,
+                            color: Colors.black,
+                          )),
+                      padding: const EdgeInsets.only(top: 10, left: 25),
+                      height: 50,
+                      width: 300,
+                      child: DropdownButton<String>(
+                        isDense: true,
+                        underline: Container(
+                          height: 0,
                         ),
+                        hint: const Text("Время"),
+                        style: const TextStyle(fontSize: 20),
+                        isExpanded: true,
+                        dropdownColor: Colors.green,
+                        items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                          return new DropdownMenuItem<String>(
+                            value: value,
+                            child: new Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (_) {},
+                        onTap: _show,
                       ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          const Padding(padding: EdgeInsets.only(left: 55)),
-                          Flexible(
-                            flex: 7,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(
-                                    width: 2.0,
-                                    style: BorderStyle.solid,
-                                    color: Colors.black,
-                                  )),
-                              padding: const EdgeInsets.only(top: 10, left: 25),
-                              height: 50,
-                              child: DropdownButton<String>(
-                                isDense: true,
-                                underline: Container(
-                                  height: 0,
-                                ),
-                                hint: const Text("Услуги"),
-                                style: const TextStyle(fontSize: 20),
-                                isExpanded: true,
-                                dropdownColor: Colors.green,
-                                items: <String>['A', 'B', 'C', 'D']
-                                    .map((String value) {
-                                  return new DropdownMenuItem<String>(
-                                    value: value,
-                                    child: new Text(value),
-                                  );
-                                }).toList(),
-                                onChanged: (_) {},
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        const Padding(padding: EdgeInsets.only(left: 55)),
+                        Flexible(
+                          flex: 7,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  width: 2.0,
+                                  style: BorderStyle.solid,
+                                  color: Colors.black,
+                                )),
+                            padding: const EdgeInsets.only(top: 10, left: 25),
+                            height: 50,
+                            child: DropdownButton<String>(
+                              isDense: true,
+                              underline: Container(
+                                height: 0,
                               ),
+                              hint: const Text("Услуги"),
+                              style: const TextStyle(fontSize: 20),
+                              isExpanded: true,
+                              dropdownColor: Colors.green,
+                              items: <String>['A', 'B', 'C', 'D']
+                                  .map((String value) {
+                                return new DropdownMenuItem<String>(
+                                  value: value,
+                                  child: new Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (_) {},
                             ),
                           ),
-                          const SizedBox(width: 5),
-                          Flexible(
-                            flex: 3,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: IconButton(
-                                icon: const Icon(Icons.add_outlined),
-                                color: Colors.white,
-                                onPressed: () {},
-                              ),
+                        ),
+                        const SizedBox(width: 5),
+                        Flexible(
+                          flex: 3,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(12)),
+                            child: IconButton(
+                              icon: const Icon(Icons.add_outlined),
+                              color: Colors.white,
+                              onPressed: () {},
                             ),
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(15))),
-                        child: const Text("Добавить",
-                            style: TextStyle(fontSize: 22)),
-                        onPressed: () {
-                          // ignore: avoid_print
-                          print("Clicked");
-                        },
-                      ),
-                    ],
-                  ),
-                  true,
-                  false,
-                  'AddNote',
-                  userId)
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(15))),
+                      child: const Text("Добавить",
+                          style: TextStyle(fontSize: 22)),
+                      onPressed: () {
+                        // ignore: avoid_print
+                        print("Clicked");
+                      },
+                    ),
+                  ],
+                ),
+                true,
+                false,
+                'AddNote',
+                userId,
+              )
             ],
           )
         ],

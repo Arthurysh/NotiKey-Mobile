@@ -57,122 +57,123 @@ class _DetailVehicleState extends State<DetailVehicle> {
                 ),
               ),
               SwipeBottomBlock(
-                  Container(
-                    padding: const EdgeInsets.only(),
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 20),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            'Характеристики транспорта',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ),
+                Container(
+                  padding: const EdgeInsets.only(),
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 20),
+                        alignment: Alignment.center,
+                        child: const Text(
+                          'Характеристики транспорта',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
                         ),
-                        Container(
-                          color: Colors.grey[350],
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: 8, top: 8, left: 20, right: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Бренд:',
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                                Text(
-                                  vehicleObj.brand,
-                                  style: const TextStyle(fontSize: 15),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
+                      ),
+                      Container(
+                        color: Colors.grey[350],
+                        child: Padding(
                           padding: const EdgeInsets.only(
                               bottom: 8, top: 8, left: 20, right: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Text(
-                                'Модель:',
+                                'Бренд:',
                                 style: TextStyle(fontSize: 15),
                               ),
                               Text(
-                                vehicleObj.model,
+                                vehicleObj.brand,
                                 style: const TextStyle(fontSize: 15),
                               )
                             ],
                           ),
                         ),
-                        Container(
-                          color: Colors.grey[350],
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: 8, top: 8, left: 20, right: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Тип кузова:',
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                                Text(
-                                  vehicleObj.type,
-                                  style: const TextStyle(fontSize: 15),
-                                )
-                              ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 8, top: 8, left: 20, right: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Модель:',
+                              style: TextStyle(fontSize: 15),
                             ),
-                          ),
+                            Text(
+                              vehicleObj.model,
+                              style: const TextStyle(fontSize: 15),
+                            )
+                          ],
                         ),
-                        Padding(
+                      ),
+                      Container(
+                        color: Colors.grey[350],
+                        child: Padding(
                           padding: const EdgeInsets.only(
                               bottom: 8, top: 8, left: 20, right: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Text(
-                                'Год выпуска:',
+                                'Тип кузова:',
                                 style: TextStyle(fontSize: 15),
                               ),
                               Text(
-                                vehicleObj.year,
+                                vehicleObj.type,
                                 style: const TextStyle(fontSize: 15),
                               )
                             ],
                           ),
                         ),
-                        Container(
-                          color: Colors.grey[350],
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: 8, top: 8, left: 20, right: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Номер в базе:',
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                                Text(
-                                  vehicleObj.vehicleNumber,
-                                  style: const TextStyle(fontSize: 15),
-                                )
-                              ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 8, top: 8, left: 20, right: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Год выпуска:',
+                              style: TextStyle(fontSize: 15),
                             ),
+                            Text(
+                              vehicleObj.year,
+                              style: const TextStyle(fontSize: 15),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        color: Colors.grey[350],
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: 8, top: 8, left: 20, right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Номер в базе:',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                              Text(
+                                vehicleObj.vehicleNumber,
+                                style: const TextStyle(fontSize: 15),
+                              )
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  true,
-                  false,
-                  'DetailVehicle',
-                  userId)
+                ),
+                true,
+                false,
+                'DetailVehicle',
+                userId,
+              )
             ],
           )
         ],

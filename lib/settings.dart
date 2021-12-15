@@ -33,35 +33,36 @@ class _SettingsState extends State<Settings> {
                 ),
               ),
               SwipeBottomBlock(
-                  Column(
-                    children: [
-                      Column(
-                        children: [
-                          Row(
-                            children: const [
-                              Icon(
-                                Icons.notifications_active_outlined,
-                                size: 30,
+                Column(
+                  children: [
+                    Column(
+                      children: [
+                        Row(
+                          children: const [
+                            Icon(
+                              Icons.notifications_active_outlined,
+                              size: 30,
+                              color: Colors.grey,
+                            ),
+                            Text(
+                              'Уведомления',
+                              style: TextStyle(
                                 color: Colors.grey,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                'Уведомления',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  true,
-                  false,
-                  'Settings',
-                  userId)
+                            )
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                true,
+                false,
+                'Settings',
+                userId,
+              )
               // BottomNavigate(false, true),
             ],
           )

@@ -260,7 +260,9 @@ class ListSidableWidget extends StatefulWidget {
 class _DismissibleListState extends State<ListSidableWidget> {
   late int userId;
 
-  _DismissibleListState(this.userId);
+  _DismissibleListState(this.userId) {
+    getUserVehicles();
+  }
 
   @override
   Widget build(BuildContext context) {

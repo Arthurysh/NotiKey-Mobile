@@ -126,184 +126,185 @@ class _MainMenu extends State<MainMenu> {
                 ),
               ),
               SwipeBottomBlock(
-                  Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 30, right: 5, bottom: 5),
-                              // ignore: deprecated_member_use
-                              child: GestureDetector(
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  child: const Text(
-                                    "Записи",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  width: 140,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.4),
-                                        spreadRadius: 2,
-                                        blurRadius: 6,
-                                      ),
-                                    ],
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 5, bottom: 5),
+                            // ignore: deprecated_member_use
+                            child: GestureDetector(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  "Записи",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Notes(user.userID)));
-                                },
+                                width: 140,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.4),
+                                      spreadRadius: 2,
+                                      blurRadius: 6,
+                                    ),
+                                  ],
+                                ),
                               ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            Notes(user.userID)));
+                              },
                             ),
                           ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  right: 30, left: 5, bottom: 5),
-                              // ignore: deprecated_member_use
-                              child: GestureDetector(
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  child: const Text(
-                                    "Транспорт",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  width: 140,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.4),
-                                        spreadRadius: 2,
-                                        blurRadius: 6,
-                                      ),
-                                    ],
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                right: 30, left: 5, bottom: 5),
+                            // ignore: deprecated_member_use
+                            child: GestureDetector(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  "Транспорт",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Vehicles(user.userID)));
-                                },
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 30, right: 5, top: 5),
-                              // ignore: deprecated_member_use
-                              child: GestureDetector(
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  child: const Text(
-                                    "Скидки",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
+                                width: 140,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.4),
+                                      spreadRadius: 2,
+                                      blurRadius: 6,
                                     ),
-                                  ),
-                                  width: 140,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.4),
-                                        spreadRadius: 2,
-                                        blurRadius: 6,
-                                      ),
-                                    ],
-                                  ),
+                                  ],
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Discounts(user.userID)));
-                                },
                               ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            Vehicles(user.userID)));
+                              },
                             ),
                           ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  right: 30, left: 5, top: 5),
-                              // ignore: deprecated_member_use
-                              child: GestureDetector(
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  child: const Text(
-                                    "Нстройки",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  width: 140,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.4),
-                                        spreadRadius: 2,
-                                        blurRadius: 6,
-                                      ),
-                                    ],
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 5, top: 5),
+                            // ignore: deprecated_member_use
+                            child: GestureDetector(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  "Скидки",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Settings(user.userID)));
-                                },
+                                width: 140,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.4),
+                                      spreadRadius: 2,
+                                      blurRadius: 6,
+                                    ),
+                                  ],
+                                ),
                               ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            Discounts(user.userID)));
+                              },
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  true,
-                  false,
-                  'MainMenu',
-                  user.userID),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                right: 30, left: 5, top: 5),
+                            // ignore: deprecated_member_use
+                            child: GestureDetector(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  "Нстройки",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                width: 140,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.4),
+                                      spreadRadius: 2,
+                                      blurRadius: 6,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            Settings(user.userID)));
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                true,
+                false,
+                'MainMenu',
+                user.userID,
+              ),
             ],
           )
           // BottomMenu(),

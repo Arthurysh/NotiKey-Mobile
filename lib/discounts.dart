@@ -40,15 +40,16 @@ class _DiscountsState extends State<Discounts> {
                 ),
               ),
               SwipeBottomBlock(
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 10),
-                    height: 450,
-                    child: ListSidableWidget(userId),
-                  ),
-                  true,
-                  false,
-                  'Vehicle',
-                  userId)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  height: 450,
+                  child: ListSidableWidget(userId),
+                ),
+                true,
+                false,
+                'Vehicle',
+                userId,
+              )
             ],
           )
         ],
