@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:notikey/Actions/slidable_widget.dart';
 import 'package:notikey/Entity/notification.dart';
 import 'package:notikey/Services/connect_controller.dart';
@@ -14,6 +15,31 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
   late int userId;
+
+  FlutterLocalNotificationsPlugin notificationPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  @override
+  void initState() {
+    initializeNoticationSetting();
+    super.initState();
+  }
+
+  void initializeNoticationSetting() async {
+    var initializeIOS = IOSInitializationSettings(
+      requestSoundPermission: false,
+      requestBadgePermission: false,
+      requestAlertPermission: false,
+    );
+    var initializeSettings = InitializationSettings(iOS: initializeIOS);
+    await notificationPlugin.initialize(initializeSettings);
+  }
+
+  Future<void> displayNotification() async {
+    notificationPlugin.show(1, 'Test', 'Content First Notification',
+        NotificationDetails(iOS: IOSNotificationDetails(subtitle: 'rrrr')));
+  }
+
   _NotificationsState(this.userId);
   @override
   Widget build(BuildContext context) {
@@ -35,6 +61,11 @@ class _NotificationsState extends State<Notifications> {
                   ),
                 ),
               ),
+              // ElevatedButton(
+              //     onPressed: () {
+              //       this.displayNotification();
+              //     },
+              //     child: Text('test')),
               SwipeBottomBlock(
                   Container(
                     height: 420,
@@ -176,7 +207,7 @@ class _DismissibleListState extends State<ListSidableWidget> {
                   onDismissed: (action) {
                     setState(
                       () {
-                        deleteNotification(snapshot.data[index].id);
+                        deleteNotification(snapshot.data[index].notificationId);
                       },
                     );
                   },
@@ -226,41 +257,48 @@ class _DismissibleListState extends State<ListSidableWidget> {
   Future<List<Notifi>> getUserNotification() async {
     ConnectController connect = ConnectController();
     List response = await connect.startGetMethod(
-        'http://localhost:8000/api/notesInfo', {"userId": this.userId});
+        'http://localhost:8000/api/getNotificationUser', {"userId": userId});
 
-    // print(response);
-
+    print(response);
     List<Notifi> notificationArr = [];
-    int noteCount = 0;
-    // for (var note in response) {
-    // notesArr.add(
-    //   Notifi();
-    // );
-    // }
 
-    notificationArr.add(Notifi(
-        1,
-        'Изменения статус',
-        'Статус вашей записи № 17 был изменен с "выполнение услуг" на "Готово к оплате, пожалуйста просмотрите вашу запись и оплатите)."',
-        '12:00'));
-    notificationArr.add(Notifi(
-        2,
-        'Изменения статус 1',
-        'Статус вашей записи № 17 был изменен с "выполнение услуг" на "Готово к оплате, пожалуйста просмотрите вашу запись и оплатите)."',
-        '14:00'));
+    for (var notification in response) {
+      notificationArr.add(Notifi(
+        notification["notificationId"],
+        notification["title"],
+        notification["content"],
+        notification["time"],
+      ));
+    }
 
-    print(notificationArr);
+    // notificationArr.add(Notifi(
+    //     1,
+    //     'Изменения статус',
+    //     'Статус вашей записи № 17 был изменен с "выполнение услуг" на "Готово к оплате, пожалуйста просмотрите вашу запись и оплатите)."',
+    //     '12:00'));
+    // notificationArr.add(Notifi(
+    //     2,
+    //     'Изменения статуса',
+    //     'Статус вашей записи № 17 был изменен с "выполнение услуг" на "Готово к оплате, пожалуйста просмотрите вашу запись и оплатите)."',
+    //     '14:00'));
+
+    // Map noti = {
+    //   'notificationId': 1,
+    //   'title': 'Изменения статуса',
+    //    'content': 'Статус вашей записи № 17 был изменен с "выполнение услуг" на "Готово к оплате, пожалуйста просмотрите вашу запись).',
+    //    'time': '12:00',
+    // };
 
     return notificationArr;
   }
 
-  deleteNotification(noteId) async {
+  deleteNotification(notificationId) async {
     ConnectController connect = ConnectController();
 
-    Map noteIdObj = {
-      'idNotes': noteId,
+    Map notificationIdObj = {
+      'notificationId': notificationId,
     };
     await connect.startMethod(
-        'http://localhost:8000/api/deleteNotes', noteIdObj);
+        'http://localhost:8000/api/deleteNotificationUser', notificationIdObj);
   }
 }

@@ -335,7 +335,7 @@ class _DismissibleListState extends State<ListSidableWidget> {
       notesArr.add(
         Note(
             note['noteId'],
-            'Запись $noteCount',
+            'Запись №' + note['noteId'].toString(),
             note['date'],
             note['time'],
             additionalServices,
