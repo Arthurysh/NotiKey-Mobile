@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notikey/Entity/vehicle.dart';
 import 'package:notikey/add_note.dart';
 import 'package:notikey/add_vehicle.dart';
+import 'package:notikey/notes.dart';
 import 'package:notikey/notifications.dart';
 import 'package:notikey/vehicles.dart';
 
@@ -36,8 +37,12 @@ class _BottomNavigateState extends State<BottomNavigate> {
   checkRouteAddScreen() {
     switch (screen) {
       case 'Notes':
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => AddNote(userId)));
+        Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddNote(userId)))
+            .then((value) => {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Notes(userId)))
+                });
         break;
       case 'Vehicles':
         Navigator.push(context,
