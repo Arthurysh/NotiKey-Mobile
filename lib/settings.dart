@@ -38,19 +38,21 @@ class _SettingsState extends State<Settings> {
                     Column(
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             Icon(
-                              Icons.notifications_active_outlined,
+                              Icons.settings,
                               size: 30,
                               color: Colors.grey,
                             ),
                             Text(
-                              'Уведомления',
+                              'Настройки',
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                               ),
+                              textAlign: TextAlign.center,
                             )
                           ],
                         )
